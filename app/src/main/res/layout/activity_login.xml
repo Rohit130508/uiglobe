@@ -39,6 +39,7 @@
         android:background="@null"
         android:fontFamily="@font/raleway"
 
+        android:focusable="false"
         android:textSize="17sp"
         android:textStyle="bold"
         android:textColorHint="#000000"

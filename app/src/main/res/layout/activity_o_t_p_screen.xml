@@ -123,6 +123,7 @@
         app:cardUseCompatPadding="true"
         app:cardCornerRadius="20dp">
         <TextView
+            android:id="@+id/txtConfirmOTP"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Confirm OTP"
