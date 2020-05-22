@@ -26,6 +26,6 @@ public class OTPScreen extends AppCompatActivity {
         content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
         textView.setText(content);
 
-        findViewById(R.id.txtConfirmOTP).setOnClickListener(v -> Toast.makeText(getApplicationContext(),"Page is under construction",Toast.LENGTH_LONG).show());
+        findViewById(R.id.txtConfirmOTP).setOnClickListener(v -> startActivity(new Intent(this,DashboardActivity.class)));
     }
 }

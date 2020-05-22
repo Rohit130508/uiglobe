@@ -3,6 +3,6 @@
     <string name="title_activity_dashboard">DashboardActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Order</string>
-    <string name="title_notifications">Favourite</string>
+    <string name="title_notifications">Search</string>
     <string name="title_search">Search</string>
 </resources>
