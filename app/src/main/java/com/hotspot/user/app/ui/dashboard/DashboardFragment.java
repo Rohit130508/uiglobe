@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,7 +30,7 @@ public class DashboardFragment extends Fragment {
 
 
         final RecyclerView rvMainCat = root.findViewById(R.id.rvMainCat);
-        rvMainCat.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
+        rvMainCat.setLayoutManager(new GridLayoutManager(getActivity(),3));
 
         MainCatAdapter mainCatAdapter = new MainCatAdapter();
         rvMainCat.setAdapter(mainCatAdapter);
@@ -81,7 +82,7 @@ public class DashboardFragment extends Fragment {
         @NonNull
         @Override
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(getActivity()).inflate(R.layout.item_slider_home,parent,false);
+            View view = LayoutInflater.from(getActivity()).inflate(R.layout.item_slider_maincat,parent,false);
             return new ViewHolder(view);
         }
 
