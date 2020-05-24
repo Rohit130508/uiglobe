@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".ui.dashboard.DashboardFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
 
         <ImageView
@@ -18,7 +18,7 @@
             android:layout_width="420dp"
             android:layout_height="420dp"
             android:layout_marginTop="-67dp"
-            android:layout_marginStart="-57dp"
+            android:layout_marginStart="-67dp"
             android:src="@drawable/backhome"/>
 
         <ImageView
@@ -76,7 +76,49 @@
             android:layout_below="@+id/rvSlider"
             android:layout_marginTop="5dp"/>
 
+        <TextView
+            android:id="@+id/txtTodaysoffer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Offer's For Today"
+
+            android:layout_below="@+id/rvMainCat"
+            android:layout_marginTop="17dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/colorAccent"
+            android:textSize="17sp"
+            android:fontFamily="@font/raleway"
+            />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardBelow"
+            android:layout_below="@+id/txtTodaysoffer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardElevation="10dp"
+            app:cardMaxElevation="10dp"
+            app:cardUseCompatPadding="true"
+
+            android:layout_marginStart="17dp"
+            android:layout_marginEnd="17dp"
+            android:layout_marginBottom="60dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upto \u20b9 200 Cashback on hotel booking  >"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:padding="17dp"
+                android:textSize="13sp"
+                android:fontFamily="@font/raleway"
+
+                />
+        </androidx.cardview.widget.CardView>
+
     </RelativeLayout>
 
 
-</LinearLayout>
+</androidx.core.widget.NestedScrollView>
