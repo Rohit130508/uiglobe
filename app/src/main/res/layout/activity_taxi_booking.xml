@@ -1,85 +1,1 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.dashboard.TaxiBooking">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardVehList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="10dp"
-            app:cardUseCompatPadding="true"
-            app:cardMaxElevation="10dp"
-            app:cardElevation="10dp"
-            app:cardBackgroundColor="@color/white"
-            >
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvVehicleList"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                />
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardSelectVeh"
-            android:layout_below="@+id/cardVehList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="10dp"
-            app:cardUseCompatPadding="true"
-            app:cardMaxElevation="10dp"
-            app:cardElevation="10dp"
-            app:cardBackgroundColor="@color/white"
-            >
-            <LinearLayout
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:weightSum="3">
-
-                <TextView
-                    android:layout_width="0dp"
-
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"
-                    android:text="Daily"
-                    android:fontFamily="@font/raleway"
-
-                    android:drawableTop="@drawable/ic_taxi_"/>
-
-
-                <TextView
-                    android:layout_width="0dp"
-
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"
-                    android:text="Rental"
-                    android:fontFamily="@font/raleway"
-
-                    android:drawableTop="@drawable/ic_taxi_"/>
-
-                <TextView
-                    android:layout_width="0dp"
-
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"
-                    android:text="Outstations"
-                    android:fontFamily="@font/raleway"
-
-                    android:drawableTop="@drawable/ic_taxi_"/>
-
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-
-    </RelativeLayout>
-
-</androidx.core.widget.NestedScrollView>
+<?xml version="1.0" encoding="utf-8"?><androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"    xmlns:tools="http://schemas.android.com/tools"    android:layout_width="match_parent"    android:layout_height="match_parent"    xmlns:app="http://schemas.android.com/apk/res-auto"    tools:context=".ui.dashboard.TaxiBooking">    <RelativeLayout        android:layout_width="match_parent"        android:layout_height="match_parent">        <include layout="@layout/top_bar_layout"            android:id="@+id/layTopBar"/>        <androidx.cardview.widget.CardView            android:id="@+id/cardVehList"            android:layout_below="@+id/layTopBar"            android:layout_width="match_parent"            android:layout_height="wrap_content"            app:cardCornerRadius="10dp"            app:cardUseCompatPadding="true"            app:cardMaxElevation="10dp"            app:cardElevation="10dp"            app:cardBackgroundColor="@color/white"            >            <androidx.recyclerview.widget.RecyclerView                android:id="@+id/rvVehicleList"                android:layout_width="match_parent"                android:layout_height="match_parent"                />        </androidx.cardview.widget.CardView>        <androidx.cardview.widget.CardView            android:id="@+id/cardSelectVeh"            android:layout_below="@+id/cardVehList"            android:layout_width="match_parent"            android:layout_height="wrap_content"            app:cardCornerRadius="10dp"            app:cardUseCompatPadding="true"            app:cardMaxElevation="10dp"            app:cardElevation="10dp"            app:cardBackgroundColor="@color/white">            <RelativeLayout                android:layout_width="match_parent"                android:layout_height="wrap_content">                <LinearLayout                    android:id="@+id/linVehType"                    android:layout_height="match_parent"                    android:layout_width="match_parent"                    android:orientation="horizontal"                    android:weightSum="3">                    <TextView                        android:gravity="center"                        android:layout_width="0dp"                        android:layout_weight="1"                        android:layout_height="match_parent"                        android:text="Daily"                        android:fontFamily="@font/raleway"                        android:drawableTop="@drawable/ic_taxi_"/>                    <TextView                        android:gravity="center"                        android:layout_width="0dp"                        android:layout_weight="1"                        android:layout_height="match_parent"                        android:text="Rental"                        android:fontFamily="@font/raleway"                        android:drawableTop="@drawable/ic_taxi_"/>                    <TextView                        android:gravity="center"                        android:layout_width="0dp"                        android:layout_weight="1"                        android:layout_height="match_parent"                        android:text="Outstations"                        android:fontFamily="@font/raleway"                        android:drawableTop="@drawable/ic_taxi_"/>                </LinearLayout>                <View                    android:layout_below="@+id/linVehType"                    android:layout_width="match_parent"                    android:layout_height="2dp"                    android:background="@color/grey"/>                <LinearLayout                    android:layout_below="@+id/linVehType"                    android:layout_marginTop="17dp"                    android:layout_height="match_parent"                    android:layout_width="match_parent"                    android:orientation="vertical">                    <TextView                        android:layout_width="match_parent"                        android:layout_height="wrap_content"                        android:text="Pickup location"                        android:drawablePadding="9dp"                        android:padding="8dp"                        android:textColor="@color/colorAccent"                        android:drawableStart="@drawable/ic_dot"/>                    <EditText                        android:layout_width="match_parent"                        android:layout_height="wrap_content"                        android:hint=""                        android:drawablePadding="9dp"                        android:padding="8dp"                        android:textColor="@color/colorAccent"                        android:background="@null"/>                    <View                        android:layout_below="@+id/linVehType"                        android:layout_width="match_parent"                        android:layout_height="1dp"                        android:background="@color/grey"/>                    <TextView                        android:layout_marginTop="9dp"                        android:layout_width="match_parent"                        android:layout_height="wrap_content"                        android:text="Destination Point"                        android:drawablePadding="9dp"                        android:padding="8dp"                        android:textColor="@color/colorAccent"                        android:drawableStart="@drawable/ic_dot"/>                    <EditText                        android:layout_width="match_parent"                        android:layout_height="wrap_content"                        android:hint=""                        android:drawablePadding="9dp"                        android:padding="8dp"                        android:textColor="@color/colorAccent"                        android:background="@null"/>                    <View                        android:layout_below="@+id/linVehType"                        android:layout_width="match_parent"                        android:layout_height="1dp"                        android:background="@color/grey"/>                </LinearLayout>            </RelativeLayout>        </androidx.cardview.widget.CardView>    </RelativeLayout></androidx.core.widget.NestedScrollView>

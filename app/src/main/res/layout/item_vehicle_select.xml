@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:orientation="vertical"
+android:padding="13dp">
+
+<ImageView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="17dp">
-    
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_taxi"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cab"
-        android:fontFamily="@font/raleway"
-        android:textSize="17sp"
-        android:textColor="@color/black"
-        android:layout_gravity="center"/>
+    android:src="@drawable/ic_taxi"/>
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Cab"
+    android:fontFamily="@font/raleway"
+    android:textSize="17sp"
+    android:textColor="@color/black"
+    android:layout_gravity="center"/>
 
 </LinearLayout>
