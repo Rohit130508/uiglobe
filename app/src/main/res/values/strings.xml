@@ -5,4 +5,6 @@
     <string name="title_dashboard">Order</string>
     <string name="title_notifications">Search</string>
     <string name="title_search">Search</string>
+
+    <string name="api_key">AIzaSyDriJ6wJ5NH6B1Yurer8dohUp5hShxkyEA</string>
 </resources>
