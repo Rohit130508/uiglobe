@@ -5,7 +5,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.hotspot.user.app"
+        applicationId 'com.uniglobe.nidhi.app'
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
@@ -46,5 +46,7 @@ dependencies {
     implementation 'com.google.android.libraries.places:places:2.2.0'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'io.nlopez.smartlocation:library:3.3.1'
+
+    implementation 'com.squareup.picasso:picasso:2.5.2'
 
 }

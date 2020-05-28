@@ -15,22 +15,25 @@
         android:id="@+id/linClick"
         android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="17dp">
 
         <ImageView
+            android:id="@+id/imgIcon"
             android:paddingStart="13dp"
             android:paddingEnd="13dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_taxi"/>
+            android:src="@drawable/ic_ma"/>
         <TextView
 
+            android:id="@+id/txtTitle"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Taxi"
+            android:text="RD/FD"
             android:textStyle="normal"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="17sp"/>
     </LinearLayout>
 
