@@ -1,25 +1,27 @@
 package com.hotspot.user.app.auth;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.hotspot.user.app.R;
 import com.hotspot.user.app.utils.AppUrls;
 import com.hotspot.user.app.utils.Utils;
 
+import org.json.JSONObject;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 public class LoginActivity extends AppCompatActivity {
 
     EditText edtMobileNumber;
+    private String mobileNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,23 +31,53 @@ public class LoginActivity extends AppCompatActivity {
 
         initView();
 
-        findViewById(R.id.cardNavigate).setOnClickListener(v-> startActivity(new Intent(this,OTPScreen.class)));
+        findViewById(R.id.cardNavigate).setOnClickListener(v-> {
+
+            mobileNumber = edtMobileNumber.getText().toString().trim();
+            if(!TextUtils.isEmpty(mobileNumber)) {
+                if (Utils.isNetworkAvailable(this))
+                    executeMethods();
+            }
+            else
+                Toast.makeText(getApplicationContext(),"Enter a valid input",Toast.LENGTH_LONG).show();
+        });
     }
 
     void initView()
     {
         edtMobileNumber = findViewById(R.id.edtMobileNumber);
 
-        if(Utils.isNetworkAvailable(this))
-        executeMethods();
     }
 
     void executeMethods()
     {
 
-        StringRequest request = new StringRequest(Request.Method.GET, AppUrls.checkPhone, response -> {
+        Utils.customProgress(this,"Please Wait...");
 
+        StringRequest request = new StringRequest(Request.Method.GET, AppUrls.checkPhone+mobileNumber,
+                response -> {
+
+                    Utils.customProgressStop();
+                    try {
+                        JSONObject jsonObject = new JSONObject(response);
+                        if (jsonObject.getString("StatusCode").equalsIgnoreCase("200"))
+                        {
+                            System.out.println("responce---" + response);
+                            startActivity(new Intent(this,SignUpActivity.class)
+                            .putExtra("number",mobileNumber));
+                        }
+                        else
+                        {
+                            startActivity(new Intent(this,SignInActivity.class));
+                        }
+                    }catch (Exception e){
+                        Utils.customProgressStop();
+
+                        e.printStackTrace();
+                    }
         }, error -> {
+            Utils.customProgressStop();
+
 
         });
 
