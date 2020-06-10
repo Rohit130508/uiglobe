@@ -18,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".auth.SignUpActivity"></activity>
+        <activity android:name=".auth.PinCodeActivity"></activity>
+        <activity android:name=".auth.SignUpActivity" />
         <activity android:name=".auth.SignInActivity" />
         <activity android:name=".ui.dashboard.GooglePlaceAndMaps" />
         <activity android:name=".ui.dashboard.TaxiBooking" />

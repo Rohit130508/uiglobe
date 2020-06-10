@@ -1,5 +1,6 @@
 package com.hotspot.user.app.auth;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.EditText;
@@ -9,8 +10,11 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.JsonObject;
+import com.hotspot.user.app.DashboardActivity;
 import com.hotspot.user.app.R;
 import com.hotspot.user.app.utils.AppUrls;
+import com.hotspot.user.app.utils.CustomPerference;
 import com.hotspot.user.app.utils.Utils;
 
 import org.json.JSONObject;
@@ -38,8 +42,8 @@ public class SignUpActivity extends AppCompatActivity {
             _pinCode = edtPinCode.getText().toString().trim();
 
             if(Utils.isNetworkAvailable(this))
-                if(!TextUtils.isEmpty(_phone) && !TextUtils.isEmpty(_password) && !TextUtils.isEmpty(_userName)
-                        && !TextUtils.isEmpty(_pinCode))
+//                if(!TextUtils.isEmpty(_phone) && !TextUtils.isEmpty(_password) && !TextUtils.isEmpty(_userName)
+//                        && !TextUtils.isEmpty(_pinCode))
                     executeMethods();
                 else
                     Toast.makeText(getApplicationContext(),"All Feilds are required", Toast.LENGTH_LONG).show();
@@ -58,19 +62,27 @@ public class SignUpActivity extends AppCompatActivity {
         Utils.customProgress(this,"Please wait...");
 
         StringRequest request = new StringRequest(Request.Method.GET,
-                AppUrls.Registration+getIntent().getStringExtra("number")+"Password"+_password+"UserName"+_userName+
-                        "Pincode"+_pinCode,
+                AppUrls.Registration+getIntent().getStringExtra("number")+"&Password="+_password+"&UserName="+_userName+
+                        "&Pincode="+_pinCode,
                 response -> {
-
                     System.out.println("responce---" + AppUrls.Registration+getIntent().getStringExtra("number")+"Password"+_password+"UserName"+_userName+
                             "Pincode"+_pinCode);
+
                     Utils.customProgressStop();
                     try {
                         JSONObject jsonObject = new JSONObject(response);
                         if (jsonObject.getString("StatusCode").equalsIgnoreCase("200"))
                         {
                             System.out.println("responce---" + response);
-//                            startActivity(new Intent(this,OTPScreen.class));
+                            JSONObject object = jsonObject.getJSONObject("Result");
+                            CustomPerference.putString(this, CustomPerference.USER_ID, object.getString("UserId"));
+                            CustomPerference.putString(this, CustomPerference.USER_PASSWORD, object.getString("Password"));
+                            CustomPerference.putString(this, CustomPerference.USER_NAME, object.getString("UserName"));
+                            CustomPerference.putString(this, CustomPerference.PinCode, object.getString("Pincode"));
+                            CustomPerference.putString(this, CustomPerference.USER_WALLET, object.getString("WalletAmount"));
+                            CustomPerference.putString(this, CustomPerference.USER_ROLE, object.getString("Role"));
+                            startActivity(new Intent(this, PinCodeActivity.class));
+                            finish();
                         }
                         else
                         {

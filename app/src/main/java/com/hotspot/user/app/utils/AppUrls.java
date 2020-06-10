@@ -7,5 +7,6 @@ public class AppUrls {
 
     public static String checkPhone = BaseUrl+"UserIdValidation?UserId=";
 
-    public static String Registration = BaseUrl+"api/Register?UserId=";
+    public static String Registration = BaseUrl+"Register?UserId=";
+    public static String PinCodeValidation = BaseUrl+"PinCodeValidation?PinCodeNo=";
 }
