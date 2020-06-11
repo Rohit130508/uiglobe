@@ -14,6 +14,7 @@ import com.hotspot.user.app.R;
 import com.hotspot.user.app.utils.AppUrls;
 import com.hotspot.user.app.utils.Utils;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -62,9 +63,17 @@ public class LoginActivity extends AppCompatActivity {
                         JSONObject jsonObject = new JSONObject(response);
                         if (jsonObject.getString("StatusCode").equalsIgnoreCase("200"))
                         {
+                            JSONArray jsonArray = jsonObject.getJSONArray("Result");
+                            JSONObject object = jsonArray.getJSONObject(0);
+
+                            String statusCode = object.getString("ResText");
                             System.out.println("responce---" + response);
+                            if(statusCode.equalsIgnoreCase("Failure"))
                             startActivity(new Intent(this,SignUpActivity.class)
                             .putExtra("number",mobileNumber));
+                            else
+                                startActivity(new Intent(this,SignInActivity.class)
+                                        .putExtra("number",mobileNumber));
                         }
                         else
                         {
