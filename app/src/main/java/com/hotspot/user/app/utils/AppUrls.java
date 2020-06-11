@@ -8,5 +8,8 @@ public class AppUrls {
     public static String checkPhone = BaseUrl+"UserIdValidation?UserId=";
 
     public static String Registration = BaseUrl+"Register?UserId=";
+    public static String Login = BaseUrl+"Login?UserId=";
+
+
     public static String PinCodeValidation = BaseUrl+"PinCodeValidation?PinCodeNo=";
 }
