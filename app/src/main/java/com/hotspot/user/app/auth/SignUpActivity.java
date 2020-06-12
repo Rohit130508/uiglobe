@@ -81,6 +81,7 @@ public class SignUpActivity extends AppCompatActivity {
                             CustomPerference.putString(this, CustomPerference.PinCode, object.getString("Pincode"));
                             CustomPerference.putString(this, CustomPerference.USER_WALLET, object.getString("WalletAmount"));
                             CustomPerference.putString(this, CustomPerference.USER_ROLE, object.getString("Role"));
+                            CustomPerference.putString(this, CustomPerference.USER_MOBILE, getIntent().getStringExtra("number"));
                             startActivity(new Intent(this, PinCodeActivity.class));
                             finish();
                         }

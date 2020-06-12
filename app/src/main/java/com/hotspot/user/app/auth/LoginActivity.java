@@ -10,8 +10,10 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.hotspot.user.app.DashboardActivity;
 import com.hotspot.user.app.R;
 import com.hotspot.user.app.utils.AppUrls;
+import com.hotspot.user.app.utils.CustomPerference;
 import com.hotspot.user.app.utils.Utils;
 
 import org.json.JSONArray;
@@ -28,6 +30,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTheme(R.style.AppTheme);
+        if(CustomPerference.getBoolean(this,CustomPerference.ISLOGIN))
+            startActivity(new Intent(this, DashboardActivity.class));
         setContentView(R.layout.activity_login);
 
         initView();
@@ -68,17 +72,16 @@ public class LoginActivity extends AppCompatActivity {
 
                             String statusCode = object.getString("ResText");
                             System.out.println("responce---" + response);
-                            if(statusCode.equalsIgnoreCase("Failure"))
-                            startActivity(new Intent(this,SignUpActivity.class)
-                            .putExtra("number",mobileNumber));
+                            if(statusCode.equalsIgnoreCase("Failure")) {
+
+                                startActivity(new Intent(this, SignInActivity.class)
+                                        .putExtra("number", mobileNumber));
+                            }
                             else
-                                startActivity(new Intent(this,SignInActivity.class)
+                                startActivity(new Intent(this,SignUpActivity.class)
                                         .putExtra("number",mobileNumber));
                         }
-                        else
-                        {
-                            startActivity(new Intent(this,SignInActivity.class));
-                        }
+
                     }catch (Exception e){
                         Utils.customProgressStop();
 

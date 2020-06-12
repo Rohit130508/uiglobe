@@ -12,4 +12,7 @@ public class AppUrls {
 
 
     public static String PinCodeValidation = BaseUrl+"PinCodeValidation?PinCodeNo=";
+
+//   &Name={Name}&Dob={Dob}&Gender={Gender}&ImgUrl={ImgUrl}&City={City}&Pan={Pan}&Aadhar={Aadhar}&PanUrl={PanUrl}&AadharUrl={AadharUrl}
+    public static String ProfileKYC = BaseUrl+"Profile?UserId=";
 }

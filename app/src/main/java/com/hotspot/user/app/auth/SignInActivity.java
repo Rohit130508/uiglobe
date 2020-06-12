@@ -5,14 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.hotspot.user.app.DashboardActivity;
 import com.hotspot.user.app.MainActivity;
 import com.hotspot.user.app.R;
 import com.hotspot.user.app.utils.AppUrls;
+import com.hotspot.user.app.utils.CustomPerference;
 import com.hotspot.user.app.utils.Utils;
 
 import org.json.JSONArray;
@@ -44,24 +47,47 @@ public class SignInActivity extends AppCompatActivity {
         String password = edtPassword.getText().toString().trim();
         Utils.customProgress(this,"Please Wait...");
 
-        StringRequest request = new StringRequest(Request.Method.GET, AppUrls.Login+mobNumber+"&Password="+password,
+        StringRequest request = new StringRequest(Request.Method.POST, AppUrls.Login+mobNumber+"&Password="+password,
                 response -> {
 
+//                    System.out.println("res"+AppUrls.Login+mobNumber+"&Password="+password+"\n"+response);
                     Utils.customProgressStop();
                     try {
                         JSONObject jsonObject = new JSONObject(response);
                         if (jsonObject.getString("StatusCode").equalsIgnoreCase("200"))
                         {
-                            JSONArray jsonArray = jsonObject.getJSONArray("Result");
-                            JSONObject object = jsonArray.getJSONObject(0);
 
-                            String statusCode = object.getString("ResText");
                             System.out.println("responce---" + response);
-                            if(statusCode.equalsIgnoreCase("Failure")){}
-//                                startActivity(new Intent(this,SignUpActivity.class)
-//                                        .putExtra("number",mobileNumber));
-                            else
-                                startActivity(new Intent(this, MainActivity.class));
+
+                            JSONArray jsonArray = jsonObject.getJSONArray("Result");
+                            JSONObject object = (JSONObject) jsonArray.get(0);
+                            String statusCode = object.getString("ResText");
+
+                            if(statusCode.equalsIgnoreCase("Success"))
+                            {
+                                CustomPerference.putString(this,
+                                        CustomPerference.USER_ID,object.getString("UserId"));
+                                CustomPerference.putString(this,
+                                        CustomPerference.USER_PASSWORD,object.getString("Password"));
+                                CustomPerference.putBoolean(this,
+                                        CustomPerference.ISLOGIN,true);
+                                CustomPerference.putString(this,
+                                        CustomPerference.USER_NAME,object.getString("UserName"));
+                                CustomPerference.putString(this,
+                                        CustomPerference.PinCode,object.getString("Pincode"));
+                                CustomPerference.putString(this,
+                                        CustomPerference.USER_WALLET,object.getString("WalletAmount"));
+                                CustomPerference.putString(this,
+                                        CustomPerference.USER_ROLE,object.getString("Role"));
+                                startActivity(new Intent(this, DashboardActivity.class));
+
+                            }else{
+                                 Toast.makeText(getApplicationContext(), "Invalid User", Toast.LENGTH_LONG);
+                            startActivity(new Intent(this,SignUpActivity.class)
+                                    .putExtra("number",mobNumber));
+                            }
+//                            else
+//                                startActivity(new Intent(this, MainActivity.class));
                         }
                         else
                         {
@@ -69,7 +95,7 @@ public class SignInActivity extends AppCompatActivity {
                         }
                     }catch (Exception e){
                         Utils.customProgressStop();
-
+                        System.out.println("responce---" + response);
                         e.printStackTrace();
                     }
                 }, error -> {

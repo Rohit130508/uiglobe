@@ -20,7 +20,13 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.hotspot.user.app.ui.notifications.NotificationsFragment"
+        android:name="com.hotspot.user.app.ui.user.UserProfile"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_userprofile" />
+
+    <fragment
+        android:id="@+id/navigation_user"
+        android:name="com.hotspot.user.app.ui.user.UserProfile"
+        android:label="Profile"
+        tools:layout="@layout/fragment_userprofile" />
 </navigation>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:id="@+id/layout">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme">
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+            android:id="@+id/view_form"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="21dp"
+                    android:layout_marginBottom="9dp">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        app:cardCornerRadius="5dp"
+                        app:cardElevation="7dp"
+                        android:layout_gravity="center">
+
+                        <ImageView
+                            android:id="@+id/imgProfilePicture"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/logo"
+                            tools:ignore="ContentDescription" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/colorPrimary"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:fontFamily="@font/raleway_semibold"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="13dp"
+                        android:textSize="23sp"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/colorPrimary"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:fontFamily="@font/raleway_semibold"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="7dp"
+                        android:textSize="19sp"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/gamil"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:fontFamily="@font/raleway_medium"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="7dp"
+                        android:textSize="17sp" />
+
+                </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="23dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimary"
+                        android:text="Wallet Balance"
+                        android:fontFamily="@font/raleway_medium"
+                        android:textSize="19sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/wallet_bal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:textColor="@color/colorPrimary"
+                        android:fontFamily="@font/raleway_semibold"
+                        android:textSize="17sp"
+                    tools:ignore="RelativeOverlap" />
+
+            </RelativeLayout>
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#FFF1F1F1"/>
+
+            <RelativeLayout
+                    android:visibility="visible"
+                    android:id="@+id/relative_qr_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="23dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimary"
+                        android:text="QR Code"
+                        android:drawableEnd="@drawable/ic_fullscreen_black_24dp"
+                        android:fontFamily="@font/raleway_medium"
+                        android:textSize="19sp" />
+
+
+                </RelativeLayout>
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#FFF1F1F1"/>
+
+            </LinearLayout>
+
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
