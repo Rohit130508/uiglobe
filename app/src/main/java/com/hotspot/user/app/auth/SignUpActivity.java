@@ -90,7 +90,6 @@ public class SignUpActivity extends AppCompatActivity {
                         }
                     }catch (Exception e){
                         Utils.customProgressStop();
-
                         e.printStackTrace();
                     }
                 }, error -> {
