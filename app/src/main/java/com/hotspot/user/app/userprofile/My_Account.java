@@ -15,7 +15,18 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
+
+import com.google.android.material.appbar.AppBarLayout;
+import com.hotspot.user.app.BuildConfig;
+import com.hotspot.user.app.MainActivity;
+import com.hotspot.user.app.R;
+import com.hotspot.user.app.auth.LoginActivity;
+import com.hotspot.user.app.utils.AppUrls;
+import com.hotspot.user.app.utils.CustomPerference;
+import com.hotspot.user.app.utils.Utils;
+
+import java.util.List;
+import java.util.Objects;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,26 +34,6 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-import com.google.android.material.appbar.AppBarLayout;
-import com.hotspot.user.app.BuildConfig;
-import com.hotspot.user.app.MainActivity;
-import com.hotspot.user.app.R;
-import com.hotspot.user.app.utils.AppUrls;
-import com.hotspot.user.app.utils.CustomPerference;
-import com.hotspot.user.app.utils.Utils;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 public class My_Account extends AppCompatActivity implements View.OnClickListener{
 
@@ -86,14 +77,14 @@ public class My_Account extends AppCompatActivity implements View.OnClickListene
         userId = CustomPerference.getString(this, CustomPerference.USER_ID);
 //        tokenId = CustomPerference.getString(My_Account.this, CustomPerference.TOKEN_ID);
         userName = CustomPerference.getString(My_Account.this, CustomPerference.USER_NAME);
-        mobileNumber = CustomPerference.getString(My_Account.this, CustomPerference.USER_MOBILE);
+        mobileNumber = CustomPerference.getString(My_Account.this, CustomPerference.USER_ID);
         walletBal = CustomPerference.getString(My_Account.this, CustomPerference.USER_WALLET);
     }
 
     private void getExecuteMethods()
     {
         if(Utils.isNetworkAvailable(this))
-            execute_profile();
+          {}
         else{
             dialog1=new Dialog(context);
             dialog1.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -218,79 +209,6 @@ public class My_Account extends AppCompatActivity implements View.OnClickListene
 
     }
 
-    public void execute_profile() {
-
-        Utils.customProgress(My_Account.this,"Please Wait ...");
-        Map<String,String> params = new HashMap<>();
-
-        params.put("UserId",userId);
-        params.put("TokenId",tokenId);
-
-        JSONObject jsonObj = new JSONObject(params);
-
-        System.out.println("jsonobject_profile==="+ jsonObj);
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
-                AppUrls.ProfileKYC,
-                jsonObj,
-                response -> {
-
-                    Utils.customProgressStop();
-                    System.out.println("result of profile===" + response);
-                    Utils.customProgressStop();
-
-                    try {
-
-                        String status = response.getString("Status").trim();
-                        String msg = response.getString("Message").trim();
-                        String Login_sts = response.getString("LoginStatus").trim();
-
-
-                        if(status.equalsIgnoreCase("true") && Login_sts.equalsIgnoreCase("true")){
-
-                            EtakId = response.getString("Status").trim();
-                            MobileNumber = response.getString("MobileNumber").trim();
-                            EmailId = response.getString("EmailId").trim();
-                            FirstName = response.getString("FirstName").trim();
-                            LastName = response.getString("LastName").trim();
-                            Gender= response.getString("Gender").trim();
-                            DOB = response.getString("DOB").trim();
-                            WalletBalance = response.getString("WalletBalance").trim();
-                            ProfileImage = response.getString("ProfileImage").trim();
-
-                            String walletBal = "\u20B9 "+WalletBalance;
-                            txt_emailId.setText(EmailId);
-                            txt_mobileNumber.setText(MobileNumber);
-                            wallet.setText(walletBal);
-
-                            Utils.Picasso(ProfileImage,imgProfilePicture);
-
-
-                        }
-                        else if(Login_sts.equalsIgnoreCase("false"))
-                        {
-                            startActivity(new Intent(My_Account.this, MainActivity.class)
-                                    .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
-                        }
-                        else{
-
-                            Utils.customProgressStop();
-                            Toast.makeText(getApplicationContext(),msg, Toast.LENGTH_SHORT).show();
-                        }
-
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                }, error -> {
-
-            Utils.customProgressStop();
-            Toast.makeText(getApplicationContext(),error.getMessage(), Toast.LENGTH_SHORT).show();
-
-        });
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(jsonObjReq);
-    }
 
 
 
@@ -350,7 +268,8 @@ public class My_Account extends AppCompatActivity implements View.OnClickListene
 
 
 
-                        startActivity(new Intent(My_Account.this,MainActivity.class)
+                        CustomPerference.clearPref(this);
+                        startActivity(new Intent(My_Account.this, LoginActivity.class)
                                 .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
 
                     })

@@ -3,6 +3,9 @@ package com.hotspot.user.app.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 
 //Created by Akash Kumar (Android Developer) on 21 / 11 / 2019 .
 //Copyright (c) 2019 Vexil Infotech Pvt Ltd. All rights reserved.
@@ -13,6 +16,10 @@ public class CustomPerference {
 
 
     public static final String MyPREFERENCES = "UIGlobe06102020" ;
+
+    public static final SimpleDateFormat dateFormatter             = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+    public static final SimpleDateFormat dateFormatterYear             = new SimpleDateFormat("yyyy/MM/dd", Locale.US);
+
     public static final String LOGIN_ONETIME = "login_one" ;
     public static final String TOKEN = "token" ;
     public static final String ISLOGIN = "islogin" ;

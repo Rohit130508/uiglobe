@@ -14,8 +14,8 @@
         android:layout_height="330dp"
         android:fitsSystemWindows="true"
         android:elevation="7dp"
-        android:theme="@style/AppTheme"
-        android:background="@color/white"
+        android:theme="@style/AppTheme_AppBar"
+        android:background="@color/grey"
         tools:ignore="UnusedAttribute">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -31,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/AppTheme" />
+                app:popupTheme="@style/AppTheme_AppBar" />
 
 
             <RelativeLayout
@@ -59,7 +59,8 @@
                     android:layout_marginTop="4dp"
                     android:layout_centerHorizontal="true"
                     android:fontFamily="@font/raleway"
-                    android:text=""
+                    android:text="support@uniglobe.com"
+                    android:textColor="@color/black"
                     android:textSize="15sp" />
 
 
