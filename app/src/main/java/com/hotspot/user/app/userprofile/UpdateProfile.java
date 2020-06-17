@@ -70,9 +70,13 @@ public class UpdateProfile extends AppCompatActivity {
 
         private Uri mCropImageUri;
 
-        private String encodedImage;
-        private String encodedImagePAN;
-        private String encodedImageAadhar;
+//        private String encodedImage;
+//        private String encodedImagePAN;
+//        private String encodedImageAadhar;
+
+        private byte[] encodedImage;
+        private byte[] encodedImagePAN;
+        private byte[] encodedImageAadhar;
 
         private String userId,
                 tokenId,
@@ -87,6 +91,7 @@ public class UpdateProfile extends AppCompatActivity {
     private String gender = null;
 
     void getPreferenceValue() {
+
         userId = CustomPerference.getString(context, CustomPerference.USER_ID);
         tokenId = CustomPerference.getString(context, CustomPerference.USER_TOKEN);
         userName = CustomPerference.getString(context, CustomPerference.USER_NAME);
@@ -223,6 +228,13 @@ public class UpdateProfile extends AppCompatActivity {
                     "&AadharUrl="+encodedImageAadhar,
                     response -> {
                         System.out.println("result of updateprofile===" + response);
+                        System.out.println("result of updateprofile===" + AppUrls.ProfileKYC+
+                                CustomPerference.getString(this,CustomPerference.USER_ID)+
+                                "&Name="+name+"&Dob="+date+"&Gender="+gender+"&ImgUrl="+encodedImage+ "&City="+city+
+                                "&Pan="+panNumber+
+                                "&Aadhar="+aadharNumber+
+                                "&PanUrl="+encodedImagePAN+
+                                "&AadharUrl="+encodedImageAadhar);
 
                        /* try {
 
@@ -315,13 +327,15 @@ public class UpdateProfile extends AppCompatActivity {
                         byte[] byteArrayImage = byteArrayOutputStream.toByteArray();
 
                         if(USER_OK)
-                            encodedImage = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
+//                            encodedImage = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
+                            encodedImage = byteArrayImage;
 
                         if(PAN_OK)
-                            encodedImagePAN = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
+//                            encodedImagePAN = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
+                            encodedImagePAN = byteArrayImage;
 
                         if(AADHAR_OK)
-                            encodedImageAadhar = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
+                            encodedImageAadhar = byteArrayImage;
 
 
 //                        UploadImages();
@@ -395,7 +409,6 @@ public class UpdateProfile extends AppCompatActivity {
 //                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 //            requestQueue.add(jsonObjReq);
 //        }
-
 
     void getDateCalendar()
     {

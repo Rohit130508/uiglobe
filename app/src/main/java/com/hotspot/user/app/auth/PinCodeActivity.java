@@ -13,6 +13,7 @@ import com.hotspot.user.app.utils.AppUrls;
 import com.hotspot.user.app.utils.CustomPerference;
 import com.hotspot.user.app.utils.Utils;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,9 +40,13 @@ public class PinCodeActivity extends AppCompatActivity {
                     Utils.customProgressStop();
                     try {
                         JSONObject jsonObject = new JSONObject(response);
+                        JSONArray jsonArray = new JSONArray("Result");
                         if (jsonObject.getString("StatusCode").equalsIgnoreCase("200"))
                         {
-                            System.out.println("responce---" + response);
+                            JSONObject jsonObject1 = jsonArray.getJSONObject(0);
+                            if(jsonObject1.getString("ResText").equalsIgnoreCase("Failure"))
+                            return;
+                            else
                             startActivity(new Intent(this, DashboardActivity.class));
                         }
                         else

@@ -131,6 +131,7 @@ public class CustomPerference {
         String val = sharedpreferences.getString(key, null);
         return val;
     }
+
     public static void remove(Context context, String key) {
         SharedPreferences sharedpreferences = context.getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();

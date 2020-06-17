@@ -2,7 +2,6 @@ package com.hotspot.user.app.auth;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -10,8 +9,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.JsonObject;
-import com.hotspot.user.app.DashboardActivity;
 import com.hotspot.user.app.R;
 import com.hotspot.user.app.utils.AppUrls;
 import com.hotspot.user.app.utils.CustomPerference;

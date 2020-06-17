@@ -48,18 +48,9 @@ public class My_Account extends AppCompatActivity implements View.OnClickListene
     CoordinatorLayout coordinatorLayout;
 
     String userId,
-            tokenId,
             userName, mobileNumber,
             walletBal;
 
-    String EtakId,
-            MobileNumber,
-            EmailId,
-            FirstName,
-            LastName,
-            Gender,
-            DOB,
-            WalletBalance;
 
     LinearLayout login_layout;
 
@@ -111,7 +102,7 @@ public class My_Account extends AppCompatActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_u_ser_profile);
 
-        getSharedPreferencesVal();
+
 
         Toolbar toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -121,7 +112,7 @@ public class My_Account extends AppCompatActivity implements View.OnClickListene
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black);
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
 
-        String PACKAGE_NAME = getApplicationContext().getPackageName();
+        getSharedPreferencesVal();
 
         login_layout = findViewById(R.id.login_layout);
         signout = findViewById(R.id.sign_out);
@@ -208,9 +199,6 @@ public class My_Account extends AppCompatActivity implements View.OnClickListene
         findViewById(R.id.view_profile).setOnClickListener(view -> startActivity(new Intent(context, ViewProfile.class)));
 
     }
-
-
-
 
     @Override
     public void onClick(View v) {

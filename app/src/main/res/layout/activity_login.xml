@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".auth.LoginActivity"
-    android:background="#F5F5F5"
-    android:orientation="vertical"
-    android:padding="19dp"
+    android:background="@color/colorPrimaryDark"
     android:weightSum="5">
 
 
 
         <ImageView
-            android:visibility="visible"
+            android:visibility="gone"
             android:id="@+id/imgBack"
             android:layout_width="24dp"
             android:layout_height="24dp"
@@ -27,19 +25,58 @@
             android:id="@+id/imgLogo"
             android:layout_marginTop="17dp"
             android:layout_width="wrap_content"
-            android:layout_height="120dp"
+            android:layout_height="130dp"
             android:layout_weight="1"
             android:src="@drawable/logo"
             style="@style/BackarrowTheme"
             />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/raleway_medium"
+        android:text="@string/app_name"
+        android:textSize="17sp"
+        android:layout_marginTop="9dp"
+        android:textColor="@color/white"
+        android:layout_below="@+id/imgLogo"
+        android:layout_centerHorizontal="true"/>
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="19dp"
+        android:background="@drawable/bottomtocurve">
+
+        <TextView
+            android:padding="17dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/raleway_medium"
+            android:text="Verify Number"
+            android:textSize="17sp"
+            android:layout_marginTop="9dp"
+            android:textColor="@color/colorAccent"
+            android:layout_below="@+id/imgLogo"
+            android:layout_centerHorizontal="true"/>
+        <View
+            android:layout_width="180dp"
+            android:layout_height="1dp"
+            android:layout_marginBottom="9dp"
+            android:background="@color/colorPrimaryDark"
+            android:layout_gravity="center"/>
+
     <EditText
-        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
         android:fontFamily="@font/raleway"
+        android:layout_marginTop="17dp"
 
+        android:padding="19dp"
         android:focusable="false"
         android:textSize="17sp"
         android:textStyle="bold"
@@ -49,6 +86,8 @@
 
     <View
         android:layout_marginTop="9dp"
+        android:layout_marginBottom="29dp"
+
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="#CCCCCC"/>
@@ -56,14 +95,13 @@
 
     <EditText
         android:id="@+id/edtMobileNumber"
-        android:layout_weight="1"
-        android:layout_marginTop="9dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
         android:fontFamily="@font/raleway"
         android:inputType="number"
         android:textSize="17sp"
+        android:padding="19dp"
         android:maxLength="10"
         android:textStyle="bold"
         android:textColor="#000000"
@@ -71,6 +109,7 @@
 
     <View
         android:layout_marginTop="9dp"
+        android:layout_marginBottom="29dp"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="#CCCCCC"/>
@@ -81,6 +120,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/raleway"
         android:gravity="center"
+        android:layout_marginBottom="29dp"
         android:justificationMode="inter_word"
         android:text="We will send you a one time SMS contain a four digit code"
         android:textColorHint="#1E1E1E"
@@ -106,4 +146,6 @@
             android:src="@drawable/ic_right_arrow"/>
 
     </androidx.cardview.widget.CardView>
-</LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>
