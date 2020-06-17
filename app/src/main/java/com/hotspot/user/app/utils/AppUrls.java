@@ -16,4 +16,9 @@ public class AppUrls {
 //   &Name={Name}&Dob={Dob}&Gender={Gender}&ImgUrl={ImgUrl}&City={City}&Pan={Pan}&Aadhar={Aadhar}&PanUrl={PanUrl}
 //   {AadharUrl}
     public static String ProfileKYC = BaseUrl+"Profile?UserId=";
+
+
+    public static String ABOUTUS = "http://uniglobenidhi.in/about.html";
+    public static String CONTACTUS = "http://uniglobenidhi.in/contact.html";
+//    public static String ProfileKYC = BaseUrl+"Profile?UserId=";
 }

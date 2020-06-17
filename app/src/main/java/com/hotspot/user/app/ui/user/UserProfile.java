@@ -17,8 +17,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
@@ -41,6 +43,7 @@ import com.hotspot.user.app.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class UserProfile extends Fragment {
 
@@ -72,16 +75,16 @@ public class UserProfile extends Fragment {
 
     private void getSharedPreferencesVal()
     {
-        userId = CustomPerference.getString(context, CustomPerference.USER_ID);
-        userName = CustomPerference.getString(context, CustomPerference.USER_NAME);
-        mobileNumber = CustomPerference.getString(context, CustomPerference.USER_ID);
-        walletBal = CustomPerference.getString(context, CustomPerference.USER_WALLET);
+        userId = CustomPerference.getString(getActivity(), CustomPerference.USER_ID);
+        userName = CustomPerference.getString(getActivity(), CustomPerference.USER_NAME);
+        mobileNumber = CustomPerference.getString(getActivity(), CustomPerference.USER_ID);
+        walletBal = CustomPerference.getString(getActivity(), CustomPerference.USER_WALLET);
 
     }
 
     private void getExecuteMethods(View root)
     {
-        if(Utils.isNetworkAvailable(context))
+        if(Utils.isNetworkAvailable(getActivity()))
         {}
         else{
             dialog1=new Dialog(context);
@@ -104,29 +107,32 @@ public class UserProfile extends Fragment {
     }
 
 
-
-
-
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.activity_u_ser_profile, container, false);
 
         getSharedPreferencesVal();
+        initializeAll(root);
+
+        Toolbar toolbar =  root.findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(userName);
+//        requireActivity().setSupportActionBar(toolbar);
+//        requireActivity().getSupportActionBar().setTitle(userName);
+//        requireActivity().getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+//        requireActivity().getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         String verName =  "version : " + BuildConfig.VERSION_NAME;
         version.setText(verName);
 
+//        if (userId != null ) {
+//
+//            signout.setVisibility(View.VISIBLE);
+//            login_layout.setVisibility(View.GONE);
+//
+//        }
 
-        if (userId != null ) {
-
-            signout.setVisibility(View.VISIBLE);
-            login_layout.setVisibility(View.GONE);
-
-        }
-
-        initializeAll(root);
         getExecuteMethods(root);
 
 
@@ -182,25 +188,25 @@ public class UserProfile extends Fragment {
 //        root.findViewById(R.id.view_profile).setOnClickListener(context);
 
         imgProfilePicture.setOnClickListener(v -> {
-            Intent intent = new Intent(context, FullScreenPopupWindow.class);
+            Intent intent = new Intent(getActivity(), FullScreenPopupWindow.class);
             intent.putExtra("image",ProfileImage);
             startActivity(intent,
                     ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
         });
 
-        root.findViewById(R.id.about).setOnClickListener(view -> startActivity(new Intent(context, WebService.class)
-                .putExtra("url", AppUrls.BaseUrl+"aboutus")));
-        root.findViewById(R.id.terms).setOnClickListener(view -> startActivity(new Intent(context, WebService.class)
+        root.findViewById(R.id.about).setOnClickListener(view -> startActivity(new Intent(getActivity(), WebService.class)
+                .putExtra("url", AppUrls.ABOUTUS)));
+        root.findViewById(R.id.terms).setOnClickListener(view -> startActivity(new Intent(getActivity(), WebService.class)
                 .putExtra("url",AppUrls.BaseUrl+"term_condition")));
-        root.findViewById(R.id.support).setOnClickListener(view -> startActivity(new Intent(context, WebService.class)
-                .putExtra("url",AppUrls.BaseUrl+"contact")));
+        root.findViewById(R.id.support).setOnClickListener(view -> startActivity(new Intent(getActivity(), WebService.class)
+                .putExtra("url",AppUrls.CONTACTUS)));
 
-        root.findViewById(R.id.review).setOnClickListener(view -> openAppRating(context));
+        root.findViewById(R.id.review).setOnClickListener(view -> openAppRating(getActivity()));
         root.findViewById(R.id.share).setOnClickListener(view -> shareApp());
-        root.findViewById(R.id.txt_updateProfile).setOnClickListener(view -> startActivity(new Intent(context, UpdateProfile.class)));
-        root.findViewById(R.id.change_password).setOnClickListener(view -> startActivity(new Intent(context, ChangePassword.class)));
-        root.findViewById(R.id.view_profile).setOnClickListener(view -> startActivity(new Intent(context, ViewProfile.class)));
-        root.findViewById(R.id.sign_out).setOnClickListener(view -> CustomPerference.clearPref(context));
+        root.findViewById(R.id.txt_updateProfile).setOnClickListener(view -> startActivity(new Intent(getActivity(), UpdateProfile.class)));
+        root.findViewById(R.id.change_password).setOnClickListener(view -> startActivity(new Intent(getActivity(), ChangePassword.class)));
+        root.findViewById(R.id.view_profile).setOnClickListener(view -> startActivity(new Intent(getActivity(), ViewProfile.class)));
+        root.findViewById(R.id.sign_out).setOnClickListener(view -> CustomPerference.clearPref(getActivity()));
 
     }
 
