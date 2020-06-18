@@ -29,6 +29,7 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.hotspot.user.app.BuildConfig;
 import com.hotspot.user.app.DashboardActivity;
 import com.hotspot.user.app.R;
+import com.hotspot.user.app.auth.SignInActivity;
 import com.hotspot.user.app.ui.dashboard.DashboardFragment;
 import com.hotspot.user.app.ui.dashboard.DashboardViewModel;
 import com.hotspot.user.app.userprofile.ChangePassword;
@@ -206,7 +207,7 @@ public class UserProfile extends Fragment {
         root.findViewById(R.id.txt_updateProfile).setOnClickListener(view -> startActivity(new Intent(getActivity(), UpdateProfile.class)));
         root.findViewById(R.id.change_password).setOnClickListener(view -> startActivity(new Intent(getActivity(), ChangePassword.class)));
         root.findViewById(R.id.view_profile).setOnClickListener(view -> startActivity(new Intent(getActivity(), ViewProfile.class)));
-        root.findViewById(R.id.sign_out).setOnClickListener(view -> CustomPerference.clearPref(getActivity()));
+        root.findViewById(R.id.sign_out).setOnClickListener(view -> getSignOut());
 
     }
 
@@ -267,4 +268,11 @@ public class UserProfile extends Fragment {
         startActivity(Intent.createChooser(sharingIntent, "Share via"));
     }
 
+    void getSignOut()
+    {
+        startActivity(new Intent(getActivity(), SignInActivity.class));
+        CustomPerference.clearPref(getActivity());
+        CustomPerference.putBoolean(getActivity(),CustomPerference.ISLOGIN,false);
+        getActivity().finish();
+    }
 }

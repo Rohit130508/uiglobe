@@ -79,7 +79,7 @@ public class SignInActivity extends AppCompatActivity {
                                         CustomPerference.USER_WALLET,object.getString("WalletAmount"));
                                 CustomPerference.putString(this,
                                         CustomPerference.USER_ROLE,object.getString("Role"));
-                                startActivity(new Intent(this, DashboardActivity.class));
+                                startActivity(new Intent(this, PinCodeActivity.class));
 
                             }else{
                                  Toast.makeText(getApplicationContext(), "Invalid User", Toast.LENGTH_LONG);

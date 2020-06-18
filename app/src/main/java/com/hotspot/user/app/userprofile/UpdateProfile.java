@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputLayout;
@@ -43,6 +45,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import org.json.JSONObject;
 
 import static com.hotspot.user.app.userprofile.ViewProfile.openDialogNoInternet;
 
@@ -70,13 +74,13 @@ public class UpdateProfile extends AppCompatActivity {
 
         private Uri mCropImageUri;
 
-//        private String encodedImage;
-//        private String encodedImagePAN;
-//        private String encodedImageAadhar;
-
-        private byte[] encodedImage;
-        private byte[] encodedImagePAN;
-        private byte[] encodedImageAadhar;
+        private String encodedImage;
+        private String encodedImagePAN;
+        private String encodedImageAadhar;
+//
+//        private byte[] encodedImage;
+//        private byte[] encodedImagePAN;
+//        private byte[] encodedImageAadhar;
 
         private String userId,
                 tokenId,
@@ -136,7 +140,8 @@ public class UpdateProfile extends AppCompatActivity {
             edt_mobNumber.setText(userNumber);
             email.setText(userMail);
 
-            findViewById(R.id.submit).setOnClickListener(view -> execute());
+            findViewById(R.id.submit).setOnClickListener(view ->
+                    execute());
 
 //                edt_mobNumber.setOnClickListener(view -> Toast.makeText(context,
 //                    "You can't update your mobile number",Toast.LENGTH_LONG).show());
@@ -219,22 +224,25 @@ public class UpdateProfile extends AppCompatActivity {
         String aadharNumber = edtAadhar.getText().toString().trim();
         String mobile = edt_mobNumber.getText().toString().trim();
 
-            StringRequest jsonObjReq = new StringRequest(Request.Method.POST, AppUrls.ProfileKYC+
-                    CustomPerference.getString(this,CustomPerference.USER_ID)+
-                    "&Name="+name+"&Dob="+date+"&Gender="+gender+"&ImgUrl="+encodedImage+ "&City="+city+
-                    "&Pan="+panNumber+
-                    "&Aadhar="+aadharNumber+
-                    "&PanUrl="+encodedImagePAN+
-                    "&AadharUrl="+encodedImageAadhar,
+            JSONObject object = new JSONObject();
+            try {
+
+                object.put("UserId",CustomPerference.getString(this,CustomPerference.USER_ID));
+                object.put("Name",name);
+                object.put("Dob",date);
+                object.put("Gender",gender);
+                object.put("ImgUrl",encodedImage);
+                object.put("City",city);
+                object.put("Pan",panNumber);
+                object.put("Aadhar",aadharNumber);
+                object.put("PanUrl",encodedImagePAN);
+                object.put("AadharUrl",encodedImageAadhar);
+            }catch(Exception e){}
+            JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, AppUrls.ProfileKYC, object,
+
                     response -> {
+                        System.out.println("result of updateprofile===" + object);
                         System.out.println("result of updateprofile===" + response);
-                        System.out.println("result of updateprofile===" + AppUrls.ProfileKYC+
-                                CustomPerference.getString(this,CustomPerference.USER_ID)+
-                                "&Name="+name+"&Dob="+date+"&Gender="+gender+"&ImgUrl="+encodedImage+ "&City="+city+
-                                "&Pan="+panNumber+
-                                "&Aadhar="+aadharNumber+
-                                "&PanUrl="+encodedImagePAN+
-                                "&AadharUrl="+encodedImageAadhar);
 
                        /* try {
 
@@ -327,15 +335,17 @@ public class UpdateProfile extends AppCompatActivity {
                         byte[] byteArrayImage = byteArrayOutputStream.toByteArray();
 
                         if(USER_OK)
-//                            encodedImage = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
-                            encodedImage = byteArrayImage;
+                            encodedImage =  resizeBase64Image(Base64.encodeToString(byteArrayImage, Base64.DEFAULT));
+
+//                            encodedImage = byteArrayImage;
 
                         if(PAN_OK)
-//                            encodedImagePAN = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
-                            encodedImagePAN = byteArrayImage;
+                            encodedImagePAN = resizeBase64Image(Base64.encodeToString(byteArrayImage, Base64.DEFAULT));
+//                            encodedImagePAN = byteArrayImage;
 
                         if(AADHAR_OK)
-                            encodedImageAadhar = byteArrayImage;
+                            encodedImageAadhar = resizeBase64Image(Base64.encodeToString(byteArrayImage, Base64.DEFAULT));
+//                            encodedImageAadhar = byteArrayImage;
 
 
 //                        UploadImages();
@@ -362,54 +372,27 @@ public class UpdateProfile extends AppCompatActivity {
         }
 
 
-//        public void UploadImages() {
-//
-//            Utils.customProgress(context,"Uploading image ...");
-//            Map<String, String> params = new HashMap<>();
-//            params.put("UserId", userId);
-//            params.put("TokenId", tokenId);
-//            params.put("profileImage", encodedImage);
-//
-//            JSONObject jsonObj = new JSONObject(params);
-//            System.out.println("result of Profile Update===" + jsonObj);
-//            JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, AppUrls.SetProfileImage, jsonObj,
-//                    response -> {
-//
-//                        Utils.customProgressStop();
-//                        System.out.println("result of  Profile Update===" + response);
-//
-//                        try {
-//
-//                            boolean status = response.getBoolean("Status");
-//                            String msg = response.getString("Message").trim();
-//                            String Login_sts = response.getString("LoginStatus").trim();
-//
-//                            if (status && Login_sts.equalsIgnoreCase("true"))
-//                            {
-//                                Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-//                                getExecuteMethods();
-//
-//                            } else
-//                                Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-//
-//                        } catch (JSONException e) {
-//                            Utils.customProgressStop();
-//                            Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
-//                        }
-//
-//                    }, error ->
-//            {
-//                Utils.customProgressStop();
-//                Toast.makeText(getApplicationContext(),  error.getMessage(),Toast.LENGTH_SHORT).show();
-//            });
-//
-//
-//            RequestQueue requestQueue = Volley.newRequestQueue(this);
-//            jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(20 * 1000,2,
-//                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-//            requestQueue.add(jsonObjReq);
-//        }
 
+    public String resizeBase64Image(String base64image){
+        byte [] encodeByte=Base64.decode(base64image.getBytes(),Base64.DEFAULT);
+        BitmapFactory.Options options=new BitmapFactory.Options();
+        options.inPurgeable = true;
+        Bitmap image = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length,options);
+
+
+        if(image.getHeight() <= 400 && image.getWidth() <= 400){
+            return base64image;
+        }
+        image = Bitmap.createScaledBitmap(image, 400, 400, false);
+
+        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
+        image.compress(Bitmap.CompressFormat.PNG,100, baos);
+
+        byte [] b=baos.toByteArray();
+        System.gc();
+        return Base64.encodeToString(b, Base64.NO_WRAP);
+
+    }
     void getDateCalendar()
     {
         Calendar newCalendar = Calendar.getInstance();

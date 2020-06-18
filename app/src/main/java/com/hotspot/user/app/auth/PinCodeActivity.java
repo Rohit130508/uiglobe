@@ -23,7 +23,7 @@ public class PinCodeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pin_code);
+
 
         if(Utils.isNetworkAvailable(this))
             executePin();
@@ -40,14 +40,21 @@ public class PinCodeActivity extends AppCompatActivity {
                     Utils.customProgressStop();
                     try {
                         JSONObject jsonObject = new JSONObject(response);
-                        JSONArray jsonArray = new JSONArray("Result");
+                        JSONArray jsonArray = jsonObject.getJSONArray("Result");
                         if (jsonObject.getString("StatusCode").equalsIgnoreCase("200"))
                         {
                             JSONObject jsonObject1 = jsonArray.getJSONObject(0);
                             if(jsonObject1.getString("ResText").equalsIgnoreCase("Failure"))
-                            return;
-                            else
-                            startActivity(new Intent(this, DashboardActivity.class));
+                            {
+                                setContentView(R.layout.activity_pin_code);
+                                startActivity(new Intent(this, DashboardActivity.class));
+//                                return;
+                            }
+                            else{
+
+                                startActivity(new Intent(this, DashboardActivity.class));
+                                finish();
+                            }
                         }
                         else
                         {

@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTheme(R.style.AppTheme);
         if(CustomPerference.getBoolean(this,CustomPerference.ISLOGIN))
-            startActivity(new Intent(this, DashboardActivity.class));
+            startActivity(new Intent(this, PinCodeActivity.class));
         setContentView(R.layout.activity_login);
 
         initView();
@@ -51,7 +51,6 @@ public class LoginActivity extends AppCompatActivity {
     void initView()
     {
         edtMobileNumber = findViewById(R.id.edtMobileNumber);
-
     }
 
     void executeMethods()
@@ -59,8 +58,10 @@ public class LoginActivity extends AppCompatActivity {
 
         Utils.customProgress(this,"Please Wait...");
 
+        System.out.println("responce---" + AppUrls.checkPhone+mobileNumber);
         StringRequest request = new StringRequest(Request.Method.GET, AppUrls.checkPhone+mobileNumber,
                 response -> {
+
 
                     Utils.customProgressStop();
                     try {
