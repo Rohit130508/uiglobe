@@ -201,6 +201,7 @@ public class Utils {
 
     }
 
+
     public static void customProgressStop() {
         if (mProgressDialog != null) {
             if (mProgressDialog.isShowing()) {

@@ -3,7 +3,9 @@ package com.hotspot.user.app.auth;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -25,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText edtMobileNumber;
     private String mobileNumber;
+    private ProgressBar indeterminateBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
 
         initView();
 
-        findViewById(R.id.cardNavigate).setOnClickListener(v-> {
+        findViewById(R.id.btnNavigate).setOnClickListener(v-> {
 
             mobileNumber = edtMobileNumber.getText().toString().trim();
             if(!TextUtils.isEmpty(mobileNumber)) {
@@ -51,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
     void initView()
     {
         edtMobileNumber = findViewById(R.id.edtMobileNumber);
+        indeterminateBar = findViewById(R.id.indeterminateBar);
     }
 
     void executeMethods()
