@@ -2,7 +2,10 @@ package com.hotspot.user.app.auth;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -22,6 +25,8 @@ public class SignUpActivity extends AppCompatActivity {
 
     private EditText edtMobileNumber, edtPassword, edtUserName, edtPinCode;
     private String _phone, _password, _userName, _pinCode;
+    private Button btnNavigate;
+    private ProgressBar indeterminateBar;
 
 
     @Override
@@ -31,7 +36,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         initView();
 
-        findViewById(R.id.cardNavigate).setOnClickListener(v ->
+        btnNavigate.setOnClickListener(v ->
         {
             _phone = edtMobileNumber.getText().toString().trim();
             _password = edtPassword.getText().toString().trim();
@@ -41,13 +46,20 @@ public class SignUpActivity extends AppCompatActivity {
             if(Utils.isNetworkAvailable(this))
 //                if(!TextUtils.isEmpty(_phone) && !TextUtils.isEmpty(_password) && !TextUtils.isEmpty(_userName)
 //                        && !TextUtils.isEmpty(_pinCode))
-                    executeMethods();
+            {
+
+                indeterminateBar.setVisibility(View.VISIBLE);
+                btnNavigate.setVisibility(View.GONE);
+                executeMethods();
+            }
                 else
                     Toast.makeText(getApplicationContext(),"All Feilds are required", Toast.LENGTH_LONG).show();
         });
     }
     void initView()
     {
+        indeterminateBar = findViewById(R.id.indeterminateBar);
+        btnNavigate = findViewById(R.id.btnNavigate);
         edtMobileNumber = findViewById(R.id.edtMobileNumber);
         edtMobileNumber.setText(getIntent().getStringExtra("number"));
         edtPassword = findViewById(R.id.edtPassword);
@@ -56,7 +68,6 @@ public class SignUpActivity extends AppCompatActivity {
     }
     void executeMethods()
     {
-        Utils.customProgress(this,"Please wait...");
 
         StringRequest request = new StringRequest(Request.Method.GET,
                 AppUrls.Registration+getIntent().getStringExtra("number")+"&Password="+_password+"&UserName="+_userName+
@@ -65,11 +76,13 @@ public class SignUpActivity extends AppCompatActivity {
                     System.out.println("responce---" + AppUrls.Registration+getIntent().getStringExtra("number")+"Password"+_password+"UserName"+_userName+
                             "Pincode"+_pinCode);
 
-                    Utils.customProgressStop();
                     try {
                         JSONObject jsonObject = new JSONObject(response);
                         if (jsonObject.getString("StatusCode").equalsIgnoreCase("200"))
                         {
+                            indeterminateBar.setVisibility(View.VISIBLE);
+                            btnNavigate.setVisibility(View.GONE);
+
                             System.out.println("responce---" + response);
                             JSONObject object = jsonObject.getJSONObject("Result");
                             CustomPerference.putString(this, CustomPerference.USER_ID, object.getString("UserId"));
@@ -84,15 +97,20 @@ public class SignUpActivity extends AppCompatActivity {
                         }
                         else
                         {
+                            indeterminateBar.setVisibility(View.VISIBLE);
+                            btnNavigate.setVisibility(View.GONE);
+
 //                            startActivity(new Intent(this,SignInActivity.class));
                         }
                     }catch (Exception e){
-                        Utils.customProgressStop();
+                        indeterminateBar.setVisibility(View.VISIBLE);
+                        btnNavigate.setVisibility(View.GONE);
                         e.printStackTrace();
                     }
                 }, error -> {
 
-            Utils.customProgressStop();
+            indeterminateBar.setVisibility(View.VISIBLE);
+            btnNavigate.setVisibility(View.GONE);
 
         });
 

@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -24,6 +27,9 @@ import org.json.JSONObject;
 public class SignInActivity extends AppCompatActivity {
 
     EditText edtMobileNumber, edtPassword;
+    private Button btnNavigate;
+    private ProgressBar indeterminateBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,11 +38,16 @@ public class SignInActivity extends AppCompatActivity {
         edtMobileNumber = findViewById(R.id.edtMobileNumber);
         edtMobileNumber.setText(getIntent().getStringExtra("number"));
         edtPassword = findViewById(R.id.edtPassword);
+        btnNavigate = findViewById(R.id.btnNavigate);
+        indeterminateBar = findViewById(R.id.indeterminateBar);
 
-        findViewById(R.id.cardNavigate).setOnClickListener(v ->
+        btnNavigate.setOnClickListener(v ->
         {
-            if(Utils.isNetworkAvailable(this))
+            if(Utils.isNetworkAvailable(this)) {
+                indeterminateBar.setVisibility(View.VISIBLE);
+                btnNavigate.setVisibility(View.GONE);
                 executeLoginUser();
+            }
         });
 
     }
@@ -45,18 +56,17 @@ public class SignInActivity extends AppCompatActivity {
     {
         String mobNumber = edtMobileNumber.getText().toString().trim();
         String password = edtPassword.getText().toString().trim();
-        Utils.customProgress(this,"Please Wait...");
 
         StringRequest request = new StringRequest(Request.Method.POST, AppUrls.Login+mobNumber+"&Password="+password,
                 response -> {
 
-//                    System.out.println("res"+AppUrls.Login+mobNumber+"&Password="+password+"\n"+response);
-                    Utils.customProgressStop();
                     try {
                         JSONObject jsonObject = new JSONObject(response);
                         if (jsonObject.getString("StatusCode").equalsIgnoreCase("200"))
                         {
 
+                            indeterminateBar.setVisibility(View.GONE);
+                            btnNavigate.setVisibility(View.VISIBLE);
                             System.out.println("responce---" + response);
 
                             JSONArray jsonArray = jsonObject.getJSONArray("Result");
@@ -91,15 +101,19 @@ public class SignInActivity extends AppCompatActivity {
                         }
                         else
                         {
+                            indeterminateBar.setVisibility(View.GONE);
+                            btnNavigate.setVisibility(View.VISIBLE);
                             startActivity(new Intent(this,SignInActivity.class));
                         }
                     }catch (Exception e){
-                        Utils.customProgressStop();
+                        indeterminateBar.setVisibility(View.GONE);
+                        btnNavigate.setVisibility(View.VISIBLE);
                         System.out.println("responce---" + response);
                         e.printStackTrace();
                     }
                 }, error -> {
-            Utils.customProgressStop();
+            indeterminateBar.setVisibility(View.GONE);
+            btnNavigate.setVisibility(View.VISIBLE);
 
 
         });

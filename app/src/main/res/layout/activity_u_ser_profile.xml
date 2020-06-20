@@ -164,13 +164,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="1dp"
-                    android:background="@drawable/gallery_dialog"
+                    android:background="@color/background"
                     android:orientation="vertical"
                     android:elevation="7dp"
                     tools:ignore="UnusedAttribute">
-
-
-
 
                     <RelativeLayout
                         android:id="@+id/txt_updateProfile"
@@ -180,16 +177,13 @@
                         tools:ignore="RtlSymmetry">
 
 
-                        <androidx.appcompat.widget.AppCompatTextView
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:drawablePadding="17dp"
                             android:layout_centerVertical="true"
                             android:text="@string/edit_profile"
-                            android:fontFamily="@font/raleway"
-                            android:textSize="19sp"
-                            android:textColor="@color/black"
-                            tools:ignore="RelativeOverlap" />
+                            style="@style/TextViewMedium" />
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="wrap_content"
@@ -208,7 +202,6 @@
                             android:background="#F1F1F1" />
 
                     </RelativeLayout>
-
                     <RelativeLayout
                         android:id="@+id/txtBankDetail"
                         android:layout_width="match_parent"
@@ -223,10 +216,7 @@
                             android:drawablePadding="17dp"
                             android:layout_centerVertical="true"
                             android:text="Update Bank Details"
-                            android:fontFamily="@font/raleway"
-                            android:textSize="19sp"
-                            android:textColor="@color/black"
-                            tools:ignore="RelativeOverlap" />
+                            style="@style/TextViewMedium" />
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="wrap_content"
@@ -245,7 +235,6 @@
                             android:background="#F1F1F1" />
 
                     </RelativeLayout>
-
                     <RelativeLayout
                         android:id="@+id/change_password"
                         android:layout_width="match_parent"
@@ -259,10 +248,7 @@
                             android:drawablePadding="17dp"
                             android:layout_centerVertical="true"
                             android:text="@string/change_password"
-                            android:fontFamily="@font/raleway"
-                            android:textSize="19sp"
-                            android:textColor="@color/black"
-                            tools:ignore="RelativeOverlap" />
+                            style="@style/TextViewMedium"/>
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="wrap_content"
@@ -281,8 +267,6 @@
                             android:background="#F1F1F1" />
 
                     </RelativeLayout>
-
-
                     <RelativeLayout
                         android:id="@+id/view_profile"
                         android:layout_width="match_parent"
@@ -296,46 +280,7 @@
                             android:drawablePadding="21dp"
                             android:layout_centerVertical="true"
                             android:text="@string/view_profile"
-                            android:fontFamily="@font/raleway"
-                            android:textSize="19sp"
-                            android:textColor="@color/black"
-                            tools:ignore="RelativeOverlap" />
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_centerInParent="true"
-                            android:layout_alignParentEnd="true"
-                            android:layout_marginEnd="17dp"
-                            app:srcCompat="@drawable/ic_forward" />
-
-                        <View
-                            android:layout_alignParentBottom="true"
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginStart="40dp"
-                            android:background="#F1F1F1" />
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/my_orders"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:paddingStart="17dp"
-                        tools:ignore="RtlSymmetry">
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:drawablePadding="21dp"
-                            android:layout_centerVertical="true"
-                            android:text="@string/my_orders"
-                            android:fontFamily="@font/raleway"
-                            android:textSize="19sp"
-                            android:textColor="@color/black"
-                            tools:ignore="RelativeOverlap" />
+                            style="@style/TextViewMedium" />
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="wrap_content"
@@ -368,10 +313,7 @@
                             android:drawablePadding="21dp"
                             android:layout_centerVertical="true"
                             android:text="@string/about_us"
-                            android:fontFamily="@font/raleway"
-                            android:textSize="19sp"
-                            android:textColor="@color/black"
-                            tools:ignore="RelativeOverlap" />
+                            style="@style/TextViewMedium" />
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="wrap_content"
@@ -404,10 +346,7 @@
                             android:drawablePadding="21dp"
                             android:layout_centerVertical="true"
                             android:text="@string/support"
-                            android:fontFamily="@font/raleway"
-                            android:textSize="19sp"
-                            android:textColor="@color/black"
-                            tools:ignore="RelativeOverlap" />
+                            style="@style/TextViewMedium" />
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="wrap_content"
@@ -440,10 +379,7 @@
                             android:drawablePadding="21dp"
                             android:layout_centerVertical="true"
                             android:text="@string/terms_of_service"
-                            android:fontFamily="@font/raleway"
-                            android:textSize="19sp"
-                            android:textColor="@color/black"
-                            tools:ignore="RelativeOverlap" />
+                            style="@style/TextViewMedium" />
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="wrap_content"
@@ -458,6 +394,7 @@
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:visibility="gone"
                         android:id="@+id/rlKYC"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
@@ -470,10 +407,7 @@
                             android:drawablePadding="21dp"
                             android:layout_centerVertical="true"
                             android:text="Update KYC"
-                            android:fontFamily="@font/raleway"
-                            android:textSize="19sp"
-                            android:textColor="@color/black"
-                            tools:ignore="RelativeOverlap" />
+                            style="@style/TextViewMedium" />
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="wrap_content"
@@ -489,7 +423,7 @@
 
                 </LinearLayout>
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/like_the_app"
@@ -505,7 +439,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:background="@drawable/gallery_dialog"
+                    android:background="@color/background"
                     android:orientation="vertical"
                     android:elevation="7dp"
                     tools:ignore="UnusedAttribute">
@@ -522,10 +456,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:text="@string/write_a_review"
-                            android:fontFamily="@font/raleway"
-                            android:textSize="19sp"
-                            android:textColor="@color/black"
-                            tools:ignore="RelativeOverlap" />
+                            style="@style/TextViewMedium"/>
 
 
                         <androidx.appcompat.widget.AppCompatImageView
@@ -561,15 +492,12 @@
                         android:paddingStart="17dp"
                         tools:ignore="RtlSymmetry">
 
-                        <androidx.appcompat.widget.AppCompatTextView
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:text="@string/spread_the_word"
-                            android:fontFamily="@font/raleway"
-                            android:textSize="19sp"
-                            android:textColor="@color/black"
-                            tools:ignore="RelativeOverlap" />
+                            style="@style/TextViewMedium"/>
 
 
                         <androidx.appcompat.widget.AppCompatImageView
@@ -590,12 +518,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="17dp"
-                    android:background="@drawable/gallery_dialog"
+                    android:background="@drawable/button_outline"
                     android:gravity="center"
                     android:padding="13dp"
                     android:text="@string/sign_out"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="13sp"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
                     android:fontFamily="@font/raleway"
                     android:elevation="7dp"
                     tools:ignore="UnusedAttribute" />
@@ -608,7 +536,7 @@
                     android:layout_gravity="center_horizontal"
                     android:adjustViewBounds="true"/>
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <TextView
                     android:id="@+id/version"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

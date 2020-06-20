@@ -10,7 +10,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme_AppBar">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -27,6 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="none"
+        android:layout_marginBottom="10dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
@@ -82,133 +83,85 @@
                 android:baselineAligned="false">
 
 
-
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/input_layout_frstnm"
+                    android:layout_marginTop="27dp"
+                    android:id="@+id/inputLayoutNumber"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/AppTheme">
+                    android:layout_height="wrap_content">
 
-                    <EditText
-                            android:id="@+id/first_name"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="textPersonName"
-                            android:textColor="@color/black"
-                            android:imeOptions="actionNext"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                            android:hint="Name"
-                            android:layout_weight="1"
-                            android:singleLine="true"
-                            android:fontFamily="@font/raleway_medium"
-                            android:textSize="17sp"
-                            android:importantForAutofill="no" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/input_layout_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/AppTheme"
-                    android:visibility="gone">
-
-                <EditText
-                        android:id="@+id/email"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/first_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textEmailAddress"
-                        android:textColor="@color/black"
+                        android:hint="Full Name*"
                         android:imeOptions="actionNext"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                        android:hint="Email"
-                        android:layout_weight="1"
-                        android:singleLine="true"
-                        android:fontFamily="@font/raleway_medium"
-                        android:textSize="17sp"
-                        android:importantForAutofill="no" />
+                        android:inputType="text"
+                        android:textSize="15sp"
+                        app:hintTextAppearance="@color/grey" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="17dp"
-                        android:layout_height="wrap_content"
-                        android:theme="@style/AppTheme">
+                    android:layout_marginTop="27dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                    <EditText
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edt_mobNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textEmailAddress"
-                        android:textColor="@color/black"
-                        android:imeOptions="actionNext"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                         android:hint="Mobile Number"
-                        android:layout_weight="1"
-                        android:singleLine="true"
-                        android:gravity="center|left"
-                        android:fontFamily="@font/raleway_medium"
-                        android:textSize="17sp"
-                        tools:ignore="RtlHardcoded,TextFields"
-                        android:importantForAutofill="no" />
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:textSize="15sp"
+                        app:hintTextAppearance="@color/grey" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-
                 <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="17dp"
-                        android:layout_height="wrap_content"
-                        android:theme="@style/AppTheme">
+                    android:layout_marginTop="27dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                    <EditText
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edtDOB"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textEmailAddress"
-                        android:textColor="@color/black"
-                        android:imeOptions="actionNext"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                         android:hint="Date of Birth"
                         android:focusable="false"
-                        android:layout_weight="1"
-                        android:singleLine="true"
-                        android:gravity="center|left"
-                        android:fontFamily="@font/raleway_medium"
-                        android:textSize="17sp"
-                        tools:ignore="RtlHardcoded,TextFields"
-                        android:importantForAutofill="no" />
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:textSize="15sp"
+                        app:hintTextAppearance="@color/grey" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-
                 <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="17dp"
-                        android:layout_height="wrap_content"
-                        android:theme="@style/AppTheme">
+                    android:layout_marginTop="27dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                    <EditText
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edtCity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textEmailAddress"
-                        android:textColor="@color/black"
-                        android:imeOptions="actionNext"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                         android:hint="Enter your City"
-                        android:layout_weight="1"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:textSize="15sp"
                         android:singleLine="true"
-                        android:gravity="center|left"
-                        android:fontFamily="@font/raleway_medium"
-                        android:textSize="17sp"
-                        tools:ignore="RtlHardcoded,TextFields"
-                        android:importantForAutofill="no" />
+
+                        app:hintTextAppearance="@color/grey" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <RadioGroup
+                    android:paddingTop="13dp"
                     android:id="@+id/radioGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -235,52 +188,42 @@
                 </RadioGroup>
 
                 <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="17dp"
-                        android:layout_height="wrap_content"
-                        android:theme="@style/AppTheme">
+                    android:layout_marginTop="27dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                    <EditText
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edtPanNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textEmailAddress"
-                        android:textColor="@color/black"
-                        android:imeOptions="actionNext"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                         android:hint="PAN Number"
-                        android:layout_weight="1"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:textSize="15sp"
                         android:singleLine="true"
-                        android:gravity="center|left"
-                        android:fontFamily="@font/raleway_medium"
-                        android:textSize="17sp"
-                        tools:ignore="RtlHardcoded,TextFields"
-                        android:importantForAutofill="no" />
+
+                        app:hintTextAppearance="@color/grey" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="17dp"
-                        android:layout_height="wrap_content"
-                        android:theme="@style/AppTheme">
+                    android:layout_marginTop="27dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                    <EditText
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edtAadhar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textEmailAddress"
-                        android:textColor="@color/black"
-                        android:imeOptions="actionNext"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                         android:hint="Aadhar Number"
-                        android:layout_weight="1"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:textSize="15sp"
                         android:singleLine="true"
-                        android:gravity="center|left"
-                        android:fontFamily="@font/raleway_medium"
-                        android:textSize="17sp"
-                        tools:ignore="RtlHardcoded,TextFields"
-                        android:importantForAutofill="no" />
+
+                        app:hintTextAppearance="@color/grey" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -292,7 +235,7 @@
                     android:textColor="@color/colorAccent"
                     android:gravity="center_vertical"
                     android:drawablePadding="17dp"
-                    android:textSize="17sp"
+                    android:textSize="15sp"
                     />
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cvPanUpload"
@@ -314,7 +257,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="180dp"
                             android:scaleType="fitXY"
-                            android:src="@drawable/pan"
+                            android:src="@drawable/panadhaar"
                             android:contentDescription="@string/app_name" />
 
 
@@ -339,6 +282,7 @@
                     android:textColor="@color/colorAccent"
                     android:gravity="center_vertical"
                     android:drawablePadding="17dp"
+                    android:textSize="15sp"
                     />
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cvAadhar"
@@ -359,7 +303,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="180dp"
                             android:scaleType="fitXY"
-                            android:src="@drawable/aadhar"
+                            android:src="@drawable/panadhaar"
                             android:contentDescription="@string/app_name" />
 
 
@@ -380,8 +324,36 @@
 
             </LinearLayout>
 
+            <TableRow
+                android:layout_margin="17dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_outline"
+                >
+
+                <ProgressBar
+                    android:visibility="gone"
+                    android:id="@+id/indeterminateBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    />
+
+
+                <androidx.appcompat.widget.AppCompatButton
+
+                    android:id="@+id/submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Submit"
+                    android:textColor="@color/white"
+                    android:background="@drawable/button_outline"
+                    />
+
+            </TableRow>
+
             <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/submit"
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
                         android:layout_marginBottom="17dp"

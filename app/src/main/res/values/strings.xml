@@ -3,7 +3,7 @@
     <string name="title_activity_dashboard">DashboardActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Order</string>
-    <string name="title_notifications">Profile</string>
+    <string name="title_notifications">Fav</string>
     <string name="title_search">Search</string>
 
     <string name="api_key">AIzaSyDriJ6wJ5NH6B1Yurer8dohUp5hShxkyEA</string>

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText edtMobileNumber;
     private String mobileNumber;
     private ProgressBar indeterminateBar;
+    private Button btnNavigate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,35 +41,40 @@ public class LoginActivity extends AppCompatActivity {
 
         initView();
 
-        findViewById(R.id.btnNavigate).setOnClickListener(v-> {
 
-            mobileNumber = edtMobileNumber.getText().toString().trim();
-            if(!TextUtils.isEmpty(mobileNumber)) {
-                if (Utils.isNetworkAvailable(this))
-                    executeMethods();
-            }
-            else
-                Toast.makeText(getApplicationContext(),"Enter a valid input",Toast.LENGTH_LONG).show();
-        });
     }
 
     void initView()
     {
         edtMobileNumber = findViewById(R.id.edtMobileNumber);
         indeterminateBar = findViewById(R.id.indeterminateBar);
+        btnNavigate = findViewById(R.id.btnNavigate);
+
+        findViewById(R.id.btnNavigate).setOnClickListener(v-> {
+
+            mobileNumber = edtMobileNumber.getText().toString().trim();
+            if(!TextUtils.isEmpty(mobileNumber)) {
+                if (Utils.isNetworkAvailable(this)) {
+                    indeterminateBar.setVisibility(View.VISIBLE);
+                    btnNavigate.setVisibility(View.GONE);
+                    executeMethods();
+                }
+            }
+            else
+                Toast.makeText(getApplicationContext(),"Enter a valid input",Toast.LENGTH_LONG).show();
+        });
+
     }
 
     void executeMethods()
     {
-
-        Utils.customProgress(this,"Please Wait...");
 
         System.out.println("responce---" + AppUrls.checkPhone+mobileNumber);
         StringRequest request = new StringRequest(Request.Method.GET, AppUrls.checkPhone+mobileNumber,
                 response -> {
 
 
-                    Utils.customProgressStop();
+
                     try {
                         JSONObject jsonObject = new JSONObject(response);
                         if (jsonObject.getString("StatusCode").equalsIgnoreCase("200"))
@@ -81,21 +88,26 @@ public class LoginActivity extends AppCompatActivity {
 
                                 startActivity(new Intent(this, SignInActivity.class)
                                         .putExtra("number", mobileNumber));
+                                finish();
                             }
-                            else
-                                startActivity(new Intent(this,SignUpActivity.class)
-                                        .putExtra("number",mobileNumber));
+                            else {
+                                startActivity(new Intent(this, SignUpActivity.class)
+                                        .putExtra("number", mobileNumber));
+                                indeterminateBar.setVisibility(View.GONE);
+                                btnNavigate.setVisibility(View.VISIBLE);
+                            }
                         }
 
                     }catch (Exception e){
-                        Utils.customProgressStop();
 
+
+                        indeterminateBar.setVisibility(View.GONE);
+                        btnNavigate.setVisibility(View.VISIBLE);
                         e.printStackTrace();
                     }
         }, error -> {
-            Utils.customProgressStop();
-
-
+            indeterminateBar.setVisibility(View.GONE);
+            btnNavigate.setVisibility(View.VISIBLE);
         });
 
         RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);

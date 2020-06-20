@@ -1,161 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".auth.LoginActivity"
-    android:background="@color/colorPrimaryDark">
+    android:background="@color/background"
+    android:orientation="vertical"
+    android:weightSum="2">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/imgBack"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_multimedia_option"
+            style="@style/BackarrowTheme"
+            />
+
+
+        <ImageView
+            android:id="@+id/imgLogo"
+            android:layout_marginTop="17dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/loginimg"
+            style="@style/BackarrowTheme"
+            />
 
 
 
-    <ImageView
-        android:visibility="gone"
-        android:id="@+id/imgBack"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:src="@drawable/ic_multimedia_option"
-        style="@style/BackarrowTheme"
-        />
 
-
-    <ImageView
-        android:id="@+id/imgLogo"
-        android:layout_marginTop="17dp"
-        android:layout_width="wrap_content"
-        android:layout_height="120dp"
-        android:layout_weight="1"
-        android:src="@drawable/logo"
-        style="@style/BackarrowTheme"
-        />
+    </RelativeLayout>
 
     <TextView
+        android:padding="17dp"
+        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/raleway_medium"
-        android:text="@string/app_name"
-        android:textSize="17sp"
-        android:layout_marginTop="9dp"
-        android:textColor="@color/white"
-        android:layout_below="@+id/imgLogo"
-        android:layout_centerHorizontal="true"/>
-
-    <LinearLayout
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
+        android:text="Login Here !"
+        style="@style/TextViewXLarge"
+        android:layout_marginTop="-19dp" />
+    <TextView
+        android:padding="7dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/raleway_medium"
+        android:text="Please enter your password here"
+        android:textColor="#AAA9A9"
+        style="@style/TextViewLarge"
+        android:layout_marginTop="-19dp" />
+    <View
+        android:layout_width="180dp"
+        android:layout_height="1dp"
+        android:layout_marginBottom="9dp"
+        android:background="@color/colorPrimaryDark"
+        android:layout_gravity="center"/>
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="vertical"
         android:padding="19dp"
+
         android:background="@drawable/bottomtocurve">
 
 
-        <TextView
-            android:padding="17dp"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/raleway_medium"
-            android:text="Login here !"
-            android:textSize="17sp"
-            android:layout_marginTop="9dp"
-            android:textColor="@color/colorAccent"
-            android:layout_below="@+id/imgLogo"
-            android:layout_centerHorizontal="true"/>
-        <View
-            android:layout_width="180dp"
-            android:layout_height="1dp"
-            android:layout_marginBottom="9dp"
-            android:background="@color/colorPrimaryDark"
-            android:layout_gravity="center"/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="27dp"
+            android:id="@+id/inputLayoutNumber"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <EditText
-        android:layout_marginTop="9dp"
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:padding="13dp"
-        android:fontFamily="@font/raleway"
-
-        android:focusable="false"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        android:textColorHint="#000000"
-        android:drawableEnd="@drawable/ic_play_arrow"
-        android:hint="India (+91)" />
-
-    <View
-        android:layout_marginTop="9dp"
-        android:layout_marginBottom="19dp"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#CCCCCC"/>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtMobileNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Mobile No.*"
+                android:focusable="false"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:textSize="14sp"
+                app:hintTextAppearance="@color/grey"
+                android:maxLength="10" />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-    <EditText
-        android:id="@+id/edtMobileNumber"
-        android:layout_weight="1"
-        android:layout_marginTop="9dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:padding="13dp"
-        android:fontFamily="@font/raleway"
-        android:inputType="number"
-        android:textSize="17sp"
-        android:maxLength="10"
-        android:textStyle="bold"
-        android:textColor="#000000"
-        android:hint="Enter Mobile Number" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="13dp"
+            android:layout_below="@+id/inputLayoutNumber"
+            android:id="@+id/inputLayoutPass"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <View
-        android:layout_marginTop="9dp"
-        android:layout_marginBottom="19dp"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#CCCCCC"/>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password *"
+                android:imeOptions="actionNext"
+                android:inputType="textPassword"
 
-    <EditText
-        android:id="@+id/edtPassword"
-        android:layout_weight="1"
-        android:layout_marginTop="9dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:fontFamily="@font/raleway"
-        android:inputType="text"
-        android:padding="13dp"
-        android:textSize="17sp"
-        android:maxLength="10"
-        android:textStyle="bold"
-        android:textColor="#000000"
-        android:hint="Enter Password" />
-
-    <View
-        android:layout_marginTop="9dp"
-        android:layout_marginBottom="19dp"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#CCCCCC"/>
+                android:textSize="14sp"
+                app:hintTextAppearance="@color/grey" />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-    <TextView
-        android:layout_weight="1"
-        android:layout_marginTop="17dp"
-        android:layout_marginBottom="19dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/raleway"
-        android:gravity="center"
-        android:justificationMode="inter_word"
-        android:text="We will send you a one time SMS contain a four digit code"
-        android:textColorHint="#1E1E1E"
-        android:textSize="17sp" />
 
 
     <androidx.cardview.widget.CardView
 
+        android:visibility="gone"
         android:id="@+id/cardNavigate"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
@@ -174,6 +143,34 @@
 
     </androidx.cardview.widget.CardView>
 
+        <TableRow
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_outline"
+            >
 
-    </LinearLayout>
-</RelativeLayout>
+            <ProgressBar
+                android:visibility="gone"
+                android:id="@+id/indeterminateBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+
+                android:id="@+id/btnNavigate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Next"
+                android:textColor="@color/white"
+                android:background="@drawable/button_outline"
+                />
+
+        </TableRow>
+
+
+    </RelativeLayout>
+</LinearLayout>

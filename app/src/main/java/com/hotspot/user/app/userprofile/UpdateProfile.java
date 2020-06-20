@@ -14,11 +14,15 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -28,6 +32,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputLayout;
+import com.hotspot.user.app.DashboardActivity;
 import com.hotspot.user.app.R;
 import com.hotspot.user.app.utils.AppUrls;
 import com.hotspot.user.app.utils.CustomPerference;
@@ -46,6 +51,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import static com.hotspot.user.app.userprofile.ViewProfile.openDialogNoInternet;
@@ -61,6 +67,8 @@ public class UpdateProfile extends AppCompatActivity {
                 email,
             edtDOB,
             edtCity, edtPanNumber, edtAadhar, edt_mobNumber;
+
+    private Button submit;
 
         TextInputLayout input_layout_frstnm,
                 input_layout_email,
@@ -93,6 +101,7 @@ public class UpdateProfile extends AppCompatActivity {
 
     private String sendDate;
     private String gender = null;
+    private ProgressBar indeterminateBar;
 
     void getPreferenceValue() {
 
@@ -114,11 +123,13 @@ public class UpdateProfile extends AppCompatActivity {
 
         void initView() {
 
-            input_layout_frstnm = findViewById(R.id.input_layout_frstnm);
+//            input_layout_frstnm = findViewById(R.id.input_layout_frstnm);
 //            input_layout_lstnm = findViewById(R.id.input_layout_lstnm);
-            input_layout_email = findViewById(R.id.input_layout_email);
+//            input_layout_email = findViewById(R.id.input_layout_email);
 
             radioGroup = findViewById(R.id.radioGroup);
+            indeterminateBar = findViewById(R.id.indeterminateBar);
+
 
             imgPan = findViewById(R.id.imgPan);
             imgAadhar = findViewById(R.id.imgAadhar);
@@ -132,16 +143,23 @@ public class UpdateProfile extends AppCompatActivity {
             edtDOB.setOnClickListener(v -> datePickerDialog.show());
 
             edt_mobNumber = findViewById(R.id.edt_mobNumber);
-            email = findViewById(R.id.email);
+            submit = findViewById(R.id.submit);
+//            email = findViewById(R.id.email);
 
             Utils.Picasso(userProfileImage,image_user);
 
             first_name.setText(userName);
-            edt_mobNumber.setText(userNumber);
-            email.setText(userMail);
+            first_name.setText(userName);
+            edt_mobNumber.setText(userId);
+//            email.setText(userMail);
 
-            findViewById(R.id.submit).setOnClickListener(view ->
-                    execute());
+            submit.setOnClickListener(view ->
+                    {
+                        indeterminateBar.setVisibility(View.VISIBLE);
+                        submit.setVisibility(View.GONE);
+                        execute();
+                    }
+                    );
 
 //                edt_mobNumber.setOnClickListener(view -> Toast.makeText(context,
 //                    "You can't update your mobile number",Toast.LENGTH_LONG).show());
@@ -224,65 +242,68 @@ public class UpdateProfile extends AppCompatActivity {
         String aadharNumber = edtAadhar.getText().toString().trim();
         String mobile = edt_mobNumber.getText().toString().trim();
 
+        if(!TextUtils.isEmpty(encodedImage) && !TextUtils.isEmpty(date) && !TextUtils.isEmpty(city) && !TextUtils.isEmpty(panNumber)
+                && !TextUtils.isEmpty(aadharNumber) && !TextUtils.isEmpty(aadharNumber) && !TextUtils.isEmpty(encodedImagePAN)
+                && !TextUtils.isEmpty(encodedImageAadhar)) {
             JSONObject object = new JSONObject();
             try {
 
-                object.put("UserId",CustomPerference.getString(this,CustomPerference.USER_ID));
-                object.put("Name",name);
-                object.put("Dob",date);
-                object.put("Gender",gender);
-                object.put("ImgUrl",encodedImage);
-                object.put("City",city);
-                object.put("Pan",panNumber);
-                object.put("Aadhar",aadharNumber);
-                object.put("PanUrl",encodedImagePAN);
-                object.put("AadharUrl",encodedImageAadhar);
-            }catch(Exception e){}
+                object.put("UserId", CustomPerference.getString(this, CustomPerference.USER_ID));
+                object.put("Name", name);
+                object.put("Dob", date);
+                object.put("Gender", gender);
+                object.put("ImgUrl", encodedImage);
+                object.put("City", city);
+                object.put("Pan", panNumber);
+                object.put("Aadhar", aadharNumber);
+                object.put("PanUrl", encodedImagePAN);
+                object.put("AadharUrl", encodedImageAadhar);
+            } catch (Exception e) {
+            }
             JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, AppUrls.ProfileKYC, object,
 
                     response -> {
+                        indeterminateBar.setVisibility(View.GONE);
+                        submit.setVisibility(View.VISIBLE);
+
                         System.out.println("result of updateprofile===" + object);
                         System.out.println("result of updateprofile===" + response);
 
-                       /* try {
 
-                            String status = response.getString("Status").trim();
-                            String msg = response.getString("Message").trim();
-                            String Login_sts = response.getString("LoginStatus").trim();
+                        try {
 
+                            String StatusCode = response.getString("StatusCode");
+                            if (StatusCode.equalsIgnoreCase("200")) {
+                                JSONObject object1 = response.getJSONObject("Result");
+                                String statusCode = object1.getString("ResText");
+                                System.out.println("responce---" + response);
+                                if (statusCode.equalsIgnoreCase("Failure")) {
 
-                            if (status.equalsIgnoreCase("true")
-                                    && Login_sts.equalsIgnoreCase("true")) {
-
-                                String userName = response.getString("Name").trim();
-                                String userEmailId = response.getString("EmailId").trim();
-
-                                CustomPerference.putString(context, CustomPerference.USER_NAME,userName);
-                                CustomPerference.putString(context, CustomPerference.USER_EMAIL,userEmailId);
-
-                                Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(context, UpdateProfile.class)
-                                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
-
-                            } else if (Login_sts.equalsIgnoreCase("false")) {
-
-                                startActivity(new Intent(context, DashboardActivity.class)
-                                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
-                            } else {
-
-                                Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(UpdateProfile.this, DashboardActivity.class));
+                                    finish();
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "Some error occured", Toast.LENGTH_LONG).show();
+                                }
                             }
 
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }*/
+                        } catch (Exception e) {
+                        }
+
 
                     }, error -> {
-
-                    });
+                indeterminateBar.setVisibility(View.GONE);
+                submit.setVisibility(View.VISIBLE);
+            });
             RequestQueue requestQueue = Volley.newRequestQueue(this);
             requestQueue.add(jsonObjReq);
+        }
+        else
+        {
+            indeterminateBar.setVisibility(View.GONE);
+            submit.setVisibility(View.VISIBLE);
+            Toast.makeText(getApplicationContext(),"All Feilds are required",Toast.LENGTH_LONG).show();
+        }
         }
 
         private void startCropImageActivity(Uri imageUri) {
