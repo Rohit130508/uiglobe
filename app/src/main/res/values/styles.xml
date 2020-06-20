@@ -31,6 +31,14 @@
         <item name="android:textColor">#FFFFFF</item>
         <item name="fontFamily">@font/raleway_medium</item>
     </style>
+  <style name="BottomNav" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="fontFamily">@font/raleway_medium</item>
+    </style>
 
 
 
