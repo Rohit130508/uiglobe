@@ -8,8 +8,7 @@
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="0dp"
     app:cardElevation="0dp"
-    app:cardMaxElevation="0dp"
-    app:cardUseCompatPadding="true">
+    app:cardMaxElevation="0dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,16 +17,16 @@
         <ImageView
             android:id="@+id/imgBanner"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:padding="10dp"
+            android:layout_height="200dp"
             android:scaleType="fitXY"
             android:src="@drawable/b"
             tools:ignore="ContentDescription" />
 
         <TableRow
+            android:background="#7C8ADAFF"
             android:id="@+id/tblBtn"
-            android:layout_marginTop="7dp"
-            android:layout_marginBottom="7dp"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
             android:layout_below="@+id/imgBanner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -45,6 +44,8 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:text="Get Now"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:textColor="@color/orange"
                 android:layout_marginRight="17dp"/>
 
         </TableRow>
