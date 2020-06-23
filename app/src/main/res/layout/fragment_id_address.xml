@@ -1,0 +1,218 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.hotspot.user.app.ui.dashboard.fragment.BasicDetail"
+    android:background="@color/background">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TableRow
+            android:id="@+id/tblHeader"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:padding="13dp">
+
+            <TextView
+                android:id="@+id/txtBansic"
+                style="@style/TextViewSmall"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/ic_correct"
+                android:gravity="center"
+                android:text="Basic Details" />
+
+            <TextView
+                android:id="@+id/txtId"
+                style="@style/TextViewSmall"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/ic_target_checked"
+                android:gravity="center"
+                android:text="ID Proff"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/txtIncome"
+                style="@style/TextViewSmall"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/ic_target"
+                android:gravity="center"
+                android:text="Income Details"
+                android:textColor="#97000000" />
+
+        </TableRow>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@+id/tblHeader"
+            android:background="@drawable/button_outline" />
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_margin="17dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtPanNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="PAN Number"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:textSize="15sp"
+                android:singleLine="true"
+
+                app:hintTextAppearance="@color/grey" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvPanUpload"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            app:cardCornerRadius="5dp"
+            app:cardUseCompatPadding="true"
+            app:cardElevation="7dp">
+
+            <RelativeLayout
+
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <ImageView
+
+                    android:id="@+id/imgPan"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/panadhaar"
+                    android:contentDescription="@string/app_name" />
+
+
+                <ImageView
+
+                    android:layout_alignParentEnd="true"
+                    app:srcCompat="@drawable/ic_attachment"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:contentDescription="@string/app_name"/>
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_margin="17dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtAadhar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Aadhar Number"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:textSize="15sp"
+                android:singleLine="true"
+
+                app:hintTextAppearance="@color/grey" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+
+        <androidx.cardview.widget.CardView
+            app:cardUseCompatPadding="true"
+            android:id="@+id/cvAadhar"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="7dp">
+
+            <RelativeLayout
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <ImageView
+
+                    android:id="@+id/imgAadhar"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/panadhaar"
+                    android:contentDescription="@string/app_name" />
+
+
+                <ImageView
+
+
+                    android:layout_alignParentEnd="true"
+                    app:srcCompat="@drawable/ic_attachment"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:contentDescription="@string/app_name"/>
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+    </LinearLayout>
+
+    <TableRow
+        android:layout_alignParentBottom="true"
+        android:layout_margin="17dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_outline"
+        >
+
+        <ProgressBar
+            android:visibility="gone"
+            android:id="@+id/indeterminateBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+
+            android:id="@+id/submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Proceed"
+            android:textColor="@color/white"
+            android:background="@drawable/button_outline"
+            />
+
+    </TableRow>
+
+</RelativeLayout>

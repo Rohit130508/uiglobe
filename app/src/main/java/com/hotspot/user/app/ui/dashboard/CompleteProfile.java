@@ -14,12 +14,16 @@ import com.hotspot.user.app.ui.dashboard.fragment.BasicDetail;
 
 public class CompleteProfile extends AppCompatActivity {
 
+    private Fragment fragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complete_profile);
+
+       
 
         loadFragment(new BasicDetail());
 

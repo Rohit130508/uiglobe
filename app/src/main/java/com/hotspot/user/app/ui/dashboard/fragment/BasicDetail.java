@@ -1,15 +1,23 @@
 package com.hotspot.user.app.ui.dashboard.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hotspot.user.app.R;
+import com.hotspot.user.app.utils.CustomPerference;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 
 /**
@@ -24,9 +32,14 @@ public class BasicDetail extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private EditText edt_mobNumber, first_name, edtDOB, edtCity;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private Animation shake;
+    private TextView txtFemale, txtmale;
+    private String gender;
 
     public BasicDetail() {
         // Required empty public constructor
@@ -69,10 +82,78 @@ public class BasicDetail extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_basic_detail, container, false);
+        shake = AnimationUtils.loadAnimation(getActivity(), R.anim.shake);
+        initView(view);
 
-        Animation shake = AnimationUtils.loadAnimation(getActivity(), R.anim.shake);
-        view.findViewById(R.id.first_name).startAnimation(shake);
+
+
 
         return view;
+    }
+
+    void initView(View view)
+    {
+        txtmale = view.findViewById(R.id.txtmale);
+        txtFemale = view.findViewById(R.id.txtFemale);
+
+
+        first_name = view.findViewById(R.id.first_name);
+        first_name.startAnimation(shake);
+
+        edtDOB = view.findViewById(R.id.edtDOB);
+        edtDOB.startAnimation(shake);
+
+        edtCity = view.findViewById(R.id.edtCity);
+        edtCity.startAnimation(shake);
+
+        edt_mobNumber = view.findViewById(R.id.edt_mobNumber);
+        edt_mobNumber.startAnimation(shake);
+        edt_mobNumber.setText(CustomPerference.getString(getActivity(),CustomPerference.USER_ID));
+        edt_mobNumber.setFocusable(false);
+
+        view.findViewById(R.id.submit).setOnClickListener(v -> executeBasicDetails());
+
+
+        view.findViewById(R.id.txtmale).setOnClickListener(v -> {
+            gender = "Male";
+            view.findViewById(R.id.txtmale).setBackgroundColor(Color.parseColor("#28B3DC"));
+            view.findViewById(R.id.txtFemale).setBackgroundColor(Color.parseColor("#FFFFFF"));
+
+
+        });
+        view.findViewById(R.id.txtFemale).setOnClickListener(v ->
+        {
+            gender = "Female";
+            view.findViewById(R.id.txtmale).setBackgroundColor(Color.parseColor("#FFFFFF"));
+            view.findViewById(R.id.txtFemale).setBackgroundColor(Color.parseColor("#28B3DC"));
+        });
+    }
+
+    void executeBasicDetails()
+    {
+        String name = first_name.getText().toString().trim();
+        String dob = edtDOB.getText().toString().trim();
+        String city = edtCity.getText().toString().trim();
+
+        if(!TextUtils.isEmpty(name) && !TextUtils.isEmpty(dob)
+                && !TextUtils.isEmpty(city) && !TextUtils.isEmpty(gender))
+        {
+            loadFragment(new IdAddress());
+        }
+        else
+        {
+            loadFragment(new IdAddress());
+            Toast.makeText(getActivity(),"All feilds are required",Toast.LENGTH_LONG).show();
+        }
+    }
+
+    void loadFragment(Fragment fragment)
+    {
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.frame,fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+
     }
 }
