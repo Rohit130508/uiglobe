@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.hotspot.user.app.ui.dashboard.CompleteProfile">
+
+    <TableRow
+        android:id="@+id/tblHeader"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:padding="13dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:drawableTop="@drawable/ic_correct"
+            android:layout_height="60dp"
+            android:text="Basic Details"
+            style="@style/TextViewSmall"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:drawableTop="@drawable/ic_target"
+            android:layout_height="60dp"
+            android:text="ID Proff"
+            android:textColor="#97000000"
+            style="@style/TextViewSmall"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:drawableTop="@drawable/ic_target"
+            android:layout_height="60dp"
+            android:text="Income Details"
+            android:textColor="#97000000"
+            style="@style/TextViewSmall"/>
+
+    </TableRow>
+
+    <View
+        android:layout_below="@+id/tblHeader"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/button_outline"/>
+
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_marginTop="7dp"
+        android:layout_below="@+id/tblHeader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+</RelativeLayout>

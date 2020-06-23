@@ -47,8 +47,8 @@ public class PinCodeActivity extends AppCompatActivity {
                             if(jsonObject1.getString("ResText").equalsIgnoreCase("Failure"))
                             {
                                 setContentView(R.layout.activity_pin_code);
-//                                startActivity(new Intent(this, DashboardActivity.class));
-//                                return;
+                                startActivity(new Intent(this, DashboardActivity.class));
+                                return;
                             }
                             else{
 

@@ -1,19 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView android:layout_height="wrap_content"
-    android:layout_width="360dp"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="10dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="10dp"
     app:cardBackgroundColor="@color/white"
-    app:cardElevation="10dp"
-    app:cardMaxElevation="10dp"
-    app:cardUseCompatPadding="true"
-    android:elevation="10dp">
+    app:cardCornerRadius="0dp"
+    app:cardElevation="0dp"
+    app:cardMaxElevation="0dp"
+    app:cardUseCompatPadding="true">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="120dp"
-        android:src="@drawable/b"
-        android:scaleType="fitXY"
-        android:padding="10dp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imgBanner"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:padding="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/b"
+            tools:ignore="ContentDescription" />
+
+        <TableRow
+            android:id="@+id/tblBtn"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
+            android:layout_below="@+id/imgBanner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:gravity="center_horizontal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                style="@style/TextViewLarge"
+                android:text="Check your Agibility now "/>
+
+            <Button
+                android:id="@+id/btnClick"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Get Now"
+                android:layout_marginRight="17dp"/>
+
+        </TableRow>
+
+        <View
+            android:layout_below="@+id/tblBtn"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey"/>
+
+    </RelativeLayout>
+
 </androidx.cardview.widget.CardView>

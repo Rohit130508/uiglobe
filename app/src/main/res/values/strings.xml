@@ -23,17 +23,17 @@
     <string name="login">Login</string>
     <string name="forgot_password">Forgot Password?</string>
 
-    <string name="request_for_otp" >Request for OTP</string>
-    <string name="error_invalid_otp" >This otp is invalid</string>
-    <string name="error_invalid_number" >This mobile number is invalid</string>
-    <string name="error_field_required" >This field is required</string>
+    <string name="request_for_otp">Request for OTP</string>
+    <string name="error_invalid_otp">This otp is invalid</string>
+    <string name="error_invalid_number">This mobile number is invalid</string>
+    <string name="error_field_required">This field is required</string>
 
-    <string name="error_age_limit" >You must be 18 to create a new account</string>
-    <string name="error_invalid_email" >This email address is invalid</string>
-    <string name="error_field_date" >Select date of birth</string>
+    <string name="error_age_limit">You must be 18 to create a new account</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_field_date">Select date of birth</string>
 
     <string name="error_invalid_password">This password is too short</string>
     <string name="password_mismatch">Password does not match the confirm password</string>
-    
+
 
 </resources>

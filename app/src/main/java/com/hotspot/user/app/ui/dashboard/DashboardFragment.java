@@ -1,13 +1,16 @@
 package com.hotspot.user.app.ui.dashboard;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.hotspot.user.app.DashboardActivity;
 import com.hotspot.user.app.R;
 
 import java.util.ArrayList;
@@ -96,16 +99,19 @@ public class DashboardFragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
+            holder.btnClick.setOnClickListener(v -> startActivity(new Intent(getActivity(), CompleteProfile.class)));
         }
 
         @Override
         public int getItemCount() {
-            return 5;
+            return 1;
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder {
+            Button btnClick;
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);
+                btnClick = itemView.findViewById(R.id.btnClick);
             }
         }
     }
