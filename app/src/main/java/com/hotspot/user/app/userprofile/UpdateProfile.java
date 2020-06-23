@@ -206,8 +206,9 @@ public class UpdateProfile extends AppCompatActivity {
         protected void onCreate(@Nullable Bundle savedInstanceState)
         {
             setTheme(R.style.AppTheme);
-            super.onCreate(savedInstanceState);
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+            super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_updateprofile);
 
             Toolbar toolbar =  findViewById(R.id.toolbar);

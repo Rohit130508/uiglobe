@@ -1,0 +1,153 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.hotspot.user.app.ui.dashboard.fragment.BasicDetail"
+   >
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayoutNumber"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="17dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/first_name"
+                app:hintTextAppearance="@color/grey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Full Name*"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:textSize="15sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="17dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_mobNumber"
+                app:hintTextAppearance="@color/grey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Mobile Number"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:maxLength="10"
+                android:textSize="15sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="17dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtDOB"
+                app:hintTextAppearance="@color/grey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:hint="Date of Birth"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:textSize="15sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="17dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtCity"
+                app:hintTextAppearance="@color/grey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter your City"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:singleLine="true"
+
+                android:textSize="15sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="17dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="13dp"
+                android:text="Gender"
+                android:textColor="@color/colorAccent"
+                android:textSize="17sp" />
+
+            <RadioButton
+                android:id="@+id/rbtnM"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Male" />
+
+            <RadioButton
+                android:id="@+id/rbtnF"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Female" />
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <TableRow
+        android:layout_alignParentBottom="true"
+        android:layout_margin="17dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_outline"
+        >
+
+        <ProgressBar
+            android:visibility="gone"
+            android:id="@+id/indeterminateBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+
+            android:id="@+id/submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Proceed"
+            android:textColor="@color/white"
+            android:background="@drawable/button_outline"
+            />
+
+    </TableRow>
+
+</RelativeLayout>

@@ -34,6 +34,8 @@
 
     <string name="error_invalid_password">This password is too short</string>
     <string name="password_mismatch">Password does not match the confirm password</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
