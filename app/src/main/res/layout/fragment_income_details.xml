@@ -149,48 +149,69 @@
 
 
         <androidx.cardview.widget.CardView
-            android:visibility="gone"
             app:cardUseCompatPadding="true"
-            android:id="@+id/cvAadhar"
+            android:id="@+id/cvSalaried"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="wrap_content"
             app:cardCornerRadius="5dp"
             app:cardElevation="7dp">
 
-            <RelativeLayout
-                android:gravity="center_horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Salaried Person"
+               style="@style/TextViewXLarge"
+               android:gravity="center"
+               android:padding="17dp"/>
 
+        </androidx.cardview.widget.CardView>
 
-                <ImageView
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvSelf"
+            app:cardUseCompatPadding="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="7dp">
 
-                    android:id="@+id/imgAadhar"
-                    android:layout_width="match_parent"
-                    android:layout_height="180dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/panadhaar"
-                    android:contentDescription="@string/app_name" />
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Self Employed"
+               style="@style/TextViewXLarge"
+               android:gravity="center"
+               android:padding="17dp"/>
 
+        </androidx.cardview.widget.CardView>
 
-                <ImageView
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvNotEmployee"
+            app:cardUseCompatPadding="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="7dp">
 
-
-                    android:layout_alignParentEnd="true"
-                    app:srcCompat="@drawable/ic_attachment"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:contentDescription="@string/app_name"/>
-
-            </RelativeLayout>
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Not Employed"
+               style="@style/TextViewXLarge"
+               android:gravity="center"
+               android:padding="17dp"/>
 
         </androidx.cardview.widget.CardView>
 
 
+        <FrameLayout
+            android:id="@+id/frameIncome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 
     <TableRow
+        android:visibility="gone"
         android:layout_alignParentBottom="true"
         android:layout_margin="17dp"
         android:layout_width="match_parent"

@@ -2,13 +2,19 @@ package com.hotspot.user.app.ui.dashboard.fragment;
 
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.hotspot.user.app.R;
+import com.hotspot.user.app.ui.dashboard.fragment.incomefrag.EarningDetails;
+import com.hotspot.user.app.ui.dashboard.fragment.incomefrag.OwnBusiness;
 
 
 /**
@@ -22,6 +28,10 @@ public class IncomeDetails extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    private CardView cvSalaried;
+    private CardView cvSelf;
+    private CardView cvNotEmployee;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -62,6 +72,45 @@ public class IncomeDetails extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_income_details, container, false);
+        View view = inflater.inflate(R.layout.fragment_income_details, container, false);
+
+        cvSalaried = view.findViewById(R.id.cvSalaried);
+        cvSelf = view.findViewById(R.id.cvSelf);
+        cvNotEmployee = view.findViewById(R.id.cvNotEmployee);
+
+        cvSalaried.setOnClickListener(v -> getSalaried());
+        cvSelf.setOnClickListener(v -> getSelf());
+        cvNotEmployee.setOnClickListener(v -> getNotEmployee());
+
+        return view;
+    }
+
+    void getSalaried()
+    {
+        cvSelf.setVisibility(View.GONE);
+        cvNotEmployee.setVisibility(View.GONE);
+        loadFragment(new EarningDetails());
+
+    }
+
+    void getSelf()
+    {
+        cvSalaried.setVisibility(View.GONE);
+        cvNotEmployee.setVisibility(View.GONE);
+        loadFragment(new OwnBusiness());
+    }
+    void getNotEmployee()
+    {
+        cvSalaried.setVisibility(View.GONE);
+        cvSelf.setVisibility(View.GONE);
+    }
+
+    void loadFragment(Fragment fragment)
+    {
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.frameIncome, fragment);
+        transaction.commit();
+
     }
 }
