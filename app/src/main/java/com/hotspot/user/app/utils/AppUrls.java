@@ -20,5 +20,7 @@ public class AppUrls {
 
     public static String ABOUTUS = "http://uniglobenidhi.in/about.html";
     public static String CONTACTUS = "http://uniglobenidhi.in/contact.html";
+    public static String BasicInfo = BaseUrl +"BasicInfo/Post";
+
 //    public static String ProfileKYC = BaseUrl+"Profile?UserId=";
 }
